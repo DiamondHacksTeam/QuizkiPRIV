@@ -1,6 +1,6 @@
 import express from "express";
 
-import db from "../db/connection.js";
+import db from "../server.js";
 
 import { ObjectId } from "mongodb";
 
@@ -14,13 +14,13 @@ router.get("/terms", async (req, res) => {
 });
 
 // This section will help you create a new term.
-router.post("/terms", async (req, res) => {
+router.post("/terms/:term/:ans", async (req, res) => {
   try {
     let newDocument = {
-      term: req.body.term,
-      answer: req.body.ans,
+      term: req.params.term,
+      answer: req.params.ans,
     };
-    let collection = await db.collection("records");
+    let collection = await db.collection("terms");
     let result = await collection.insertOne(newDocument);
     res.send(result).status(204);
   } catch (err) {
@@ -30,18 +30,18 @@ router.post("/terms", async (req, res) => {
 });
 
 // This section will help you delete a term
-router.delete("/terms", async (req, res) => {
-  try {
-    const query = { _id: new ObjectId(req.params.id) };
+// router.delete("/terms", async (req, res) => {
+//   try {
+//     const query = { _id: new ObjectId(req.params.id) };
 
-    const collection = db.collection("records");
-    let result = await collection.deleteOne(query);
+//     const collection = db.collection("records");
+//     let result = await collection.deleteOne(query);
 
-    res.send(result).status(200);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error deleting record");
-  }
-});
+//     res.send(result).status(200);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("Error deleting record");
+//   }
+// });
 
 export default router;
