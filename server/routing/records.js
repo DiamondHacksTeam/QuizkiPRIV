@@ -14,11 +14,11 @@ router.get("/terms", async (req, res) => {
 });
 
 // This section will help you create a new term.
-router.post("/terms/:term/:ans", async (req, res) => {
+router.post("/terms", async (req, res) => {
   try {
     let newDocument = {
-      term: req.params.term,
-      answer: req.params.ans,
+      term: req.body.term,
+      answer: req.body.ans,
     };
     let collection = await db.collection("terms");
     let result = await collection.insertOne(newDocument);
@@ -29,19 +29,18 @@ router.post("/terms/:term/:ans", async (req, res) => {
   }
 });
 
-// This section will help you delete a term
-// router.delete("/terms", async (req, res) => {
-//   try {
-//     const query = { _id: new ObjectId(req.params.id) };
+// This section will help you delete all flashcards
+router.delete("/terms", async (req, res) => {
+  try {
 
-//     const collection = db.collection("records");
-//     let result = await collection.deleteOne(query);
+    const collection = db.collection("terms");
+    let result = await collection.deleteMany();
 
-//     res.send(result).status(200);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send("Error deleting record");
-//   }
-// });
+    res.send(result).status(200);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error deleting record");
+  }
+});
 
 export default router;
