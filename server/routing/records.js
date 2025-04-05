@@ -2,23 +2,21 @@ import express from "express";
 
 import db from "../server.js";
 
-import { ObjectId } from "mongodb";
-
 const router = express.Router();
 
-// This section will help you get a list of all the term.
-router.get("/terms", async (req, res) => {
-  let collection = await db.collection("terms");
+//get all terms/points/collectedSmiskis/smiskiInfo
+router.get("/:desired", async (req, res) => {
+  let collection = await db.collection(`${req.params.desired}`);
   let results = await collection.find({}).toArray();
   res.send(results).status(200);
 });
 
-// This section will help you create a new term.
-router.post("/terms", async (req, res) => {
+//create a new term
+router.post("/terms/:term/:ans", async (req, res) => {
   try {
     let newDocument = {
-      term: req.body.term,
-      answer: req.body.ans,
+      term: req.params.term,
+      answer: req.params.ans,
     };
     let collection = await db.collection("terms");
     let result = await collection.insertOne(newDocument);
@@ -28,18 +26,59 @@ router.post("/terms", async (req, res) => {
     res.status(500).send("Error adding record");
   }
 });
+//for posting new smiskis 
+// router.post("/smiskis/:name/:series/:img", async (req, res) => {
+//     try {
+//       let newDocument = {
+//         name: req.params.name,
+//         series: req.params.series,
+//         img: decodeURI(req.params.img)
+//       };
+//       let collection = await db.collection("smiskis");
+//       let result = await collection.insertOne(newDocument);
+//       res.send(result).status(204);
+//     } catch (err) {
+//       console.error(err);
+//       res.status(500).send("Error adding record");
+//     }
+//   });
+//updates points
+router.patch("/points/:amnt", async (req, res) =>{
+    try{
+        let amnt = parseInt(req.params.amnt);
+        const changeBal = {$inc: {points: amnt}}
 
-// This section will help you delete all flashcards
-router.delete("/terms", async (req, res) => {
+        const query = {name: 'Guest'};
+        
+        let collection = await db.collection("points");
+        let result = await collection.updateOne(query, changeBal);
+        res.send(result).status(200);
+    } catch (err){
+        console.error(err);
+        res.status(500).send("Error updating balance");
+    }
+});
+
+//resets progress
+router.delete("/", async (req, res) => {
   try {
-
     const collection = db.collection("terms");
     let result = await collection.deleteMany();
 
     res.send(result).status(200);
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error deleting record");
+    res.status(500).send("Error deleting all terms");
+  }
+  try {
+    const collection = db.collection("points");
+    let query = {$set: {points: 0}}
+    let result = await collection.updateOne({name: 'Guest'}, query);
+
+    res.send(result).status(200);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error deleting all terms");
   }
 });
 
