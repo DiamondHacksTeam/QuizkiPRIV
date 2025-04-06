@@ -86,20 +86,25 @@ export default function Create() {
         <div className="choose-container">
           <h2>What would you like to do?</h2>
           <button onClick={() => setCurrentPage('create-group')}>Create a New Group</button>
-          <h3>Or choose an existing group:</h3>
-          <div className="group-list">
-            {groups.map((group) => ( //this is the groups button
-              <button
-                key={group}
-                onClick={() => {
-                  setSelectedGroup(group);
-                  setCurrentPage('create');
-                }}
-              >
-                {group}
-              </button>
-            ))}
-          </div>
+          {/* Conditionally render the text and group list only if there are groups */}
+          {groups.length > 0 && (
+            <>
+              <h3>Or choose an existing group:</h3>
+              <div className="group-list">
+                {groups.map((group) => (
+                  <button
+                    key={group}
+                    onClick={() => {
+                      setSelectedGroup(group);
+                      setCurrentPage('create');
+                    }}
+                  >
+                    {group}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       )}
 
@@ -129,9 +134,11 @@ export default function Create() {
       {currentPage === 'list' && <FlashcardList flashcards={flashcards} />}
 
       {/* Button to navigate to the Flashcards page */}
-      <button className="view-flashcards-button" onClick={() => navigate('/flashcards')}>
-        View Flashcards
-      </button>
+      <div className="view-flashcards-button">
+        <button onClick={() => navigate('/flashcards')}>
+          View Flashcards
+        </button>
+      </div>
     </div>
   );
 }
