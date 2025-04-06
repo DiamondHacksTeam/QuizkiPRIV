@@ -79,9 +79,11 @@ export default function FlashcardList() {
         </div>
       ) : filteredFlashcards.length > 0 ? (
         <div>
-          <button onClick={() => setSelectedGroup(null)} className="back-button">
-            Back to Groups
-          </button>
+          <div className="back">
+            <button onClick={() => setSelectedGroup(null)} className="back-button">
+              Back to Groups
+            </button>
+          </div>
 
           <div className="flashcard-container">
             <Flashcard flashcard={filteredFlashcards[currentFlashcardIndex]} />

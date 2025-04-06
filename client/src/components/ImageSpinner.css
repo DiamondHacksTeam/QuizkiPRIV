@@ -21,3 +21,9 @@
   padding: 10px 20px;
   color: #2d4849;
 }
+
+.spinnerContainer button:hover {
+  cursor: pointer;
+  background-color: #2d4849;
+  color: white;
+}
