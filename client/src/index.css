@@ -5,3 +5,11 @@
   padding: 0;
   font-family: "Quicksand", sans-serif; 
 }
+
+html, body {
+  background-color: #bcdad3; /* Sets the entire page background color */
+  height: 100%; /* Ensures the background covers the full height */
+  margin: 0; /* Removes default margin */
+  padding: 0; /* Removes default padding */
+  box-sizing: border-box;
+}
