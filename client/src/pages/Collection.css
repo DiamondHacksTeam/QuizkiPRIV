@@ -1,3 +1,9 @@
+.outer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .collection-header {
   font-size: 1.5rem;
   text-align: center;
@@ -11,6 +17,7 @@
   background-color: #bcdad3; /* Sets the same background color */
   text-decoration-line: underline; /* Underlines the series titles */
   color: #2d4849;
+  margin-right: auto;
 }
 
 .series-image1 {
