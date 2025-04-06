@@ -88,6 +88,7 @@ router.patch("/balance/:user/:amnt", async (req, res) => {
 router.patch("/smiskis/:user/:smiskiName", async (req, res) => {
     try {
       let user = req.params.user;
+      let smiskiName = req.params.smiskiName;
       let smiskiCollection = await db.collection("smiskis");
 
       let smiskiInfo = await smiskiCollection.findOne({name: smiskiName});
