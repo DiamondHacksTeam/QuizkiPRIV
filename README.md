@@ -10,7 +10,7 @@ Engaging study tool web application for DiamondHacks 2025
 3. `npm run start` to run the backend
 
 ### Frontend
-1. `cd frontend` to enter the frontend directory
+1. `cd client` to enter the frontend directory
 2. `npm install` to install any dependencies
 3. `npm run dev` to run the frontend
 
