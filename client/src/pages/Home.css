@@ -1,3 +1,12 @@
+.div {
+    background-color: #bcdad3;
+    height: 100%; /* Ensures the div takes the full height of its parent */
+}
+
+.home-container {
+    background-color: #bcdad3;
+}
+
 .header-container {
     display: flex;
     align-items: center; /* Aligns items vertically */
@@ -10,7 +19,7 @@
     display: block;
     font-size: 4rem; /* Sets the font size for the main header */
     color: #2d4849; /* Sets a default color for the header text */
-    background-color: #bcdad3;
+    background-color: #f6f1df;
     border: 5px solid  #2d4849; /* Adds a brown border */
     border-radius: 20px; /* Rounds the corners */
     padding: 10px 40px; /* Adds more padding on the sides */
@@ -23,7 +32,7 @@
 .header-container h2,
 .header-container a {
     margin: 0; /* Removes default margin for headers and links */
-    margin-left: 40px;
+    padding-left: 40px;
     text-decoration: none; /* Ensures links don't have underlines */
     color: inherit; /* Keeps link color consistent with text */
     font-size: 2rem; /* Sets a default size for secondary headers */

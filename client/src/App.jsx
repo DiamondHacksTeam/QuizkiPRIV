@@ -1,15 +1,14 @@
 import "./App.css";
-import LoginButton from "./components/LoginButton";
-import LogoutButton from "./components/LogoutButton";
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
-import { Study } from "./pages/study";
-import { Collection } from "./pages/collection";
+
+import Study from "./pages/study";
+import { Collection } from "./pages/collection"; 
 import { Gacha } from "./pages/gacha";
-import { Home } from "./pages/Home";
-import { Flashcards } from "./pages/Flashcards";
+import { Home } from "./pages/Home"; 
+import  Flashcards  from "./pages/Flashcards"; 
 import { Profile } from "./pages/Profile";
-import { Create } from "./pages/Create";
+import Create from "./pages/Create"; 
 
 function App() {
   return (
@@ -24,8 +23,6 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/create" element={<Create />} />
       </Routes>
-      <LoginButton />
-      <LogoutButton />
     </div>
   );
 }

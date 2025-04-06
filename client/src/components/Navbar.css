@@ -1,56 +1,53 @@
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f6f1df;
-    font-color:  #2d4849;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border-bottom: 4px solid #2d4849;
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f6f1df;
+  font-color: #2d4849;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-bottom: 4px solid #2d4849;
 }
 
 nav .title {
-    font-size: 2rem;
-    margin: 1rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: #2d4849
+  font-size: 2rem;
+  margin: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #2d4849;
 }
 
 nav ul {
-    display: flex;
+  display: flex;
 }
 
 nav ul li {
-    list-style: none;
-    
-
+  list-style: none;
 }
 
 nav ul li a {
-    display: block;
-    text-decoration: none; 
-    padding: 1rem;
-    margin: 0 0.5rem;
-    border-radius: 0.5rem;
-    color: #2d4849; 
-    transition: all 0.1s ease; /* Smooth transition for hover and active states */
+  display: block;
+  text-decoration: none;
+  padding: 1rem;
+  margin: 0 0.5rem;
+  border-radius: 0.5rem;
+  color: #2d4849;
+  transition: all 0.1s ease; /* Smooth transition for hover and active states */
 }
 
 nav ul li a:hover,
 nav ul li a:focus {
-    background-color: #fbeac5; /* Hover background color */
-    border: 2px solid #2d4849; /* Hover border color */
-    border-radius: 0.5rem;
+  background-color: #fbeac5; /* Hover background color */
+  border: 2px solid #2d4849; /* Hover border color */
+  border-radius: 0.5rem;
 }
 
 nav ul li a.active {
-    background-color: #fbeac5; /* Active background color */
-    border: 2px solid #2d4849; /* Active border color */
-    border-radius: 0.5rem;
-    color: #2d4849; /* Active text color */
+  background-color: #fbeac5; /* Active background color */
+  border: 2px solid #2d4849; /* Active border color */
+  border-radius: 0.5rem;
+  color: #2d4849; /* Active text color */
 }
