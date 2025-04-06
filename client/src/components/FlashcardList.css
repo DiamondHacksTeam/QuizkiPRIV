@@ -1,0 +1,26 @@
+.flashcard-groups {
+    display: grid; /* Use CSS Grid for layout */
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Create responsive columns */
+    gap: 20px; /* Add spacing between buttons */
+    justify-content: center; /* Center the grid horizontally */
+    padding: 20px; /* Add padding around the grid */
+}
+
+.flashcard-groups button {
+    display: block;
+    border: 4px solid #2d4849;
+    border-radius: 20px;
+    background-color: #fbeac5;
+    font-size: 1.4rem;
+    padding: 10px 20px;
+    color: #2d4849;
+    width: 100%; /* Make the button fill the grid cell */
+    height: 100px;
+    text-align: center; /* Center the text inside the button */
+}
+
+.flashcard-groups button:hover {
+    cursor: pointer;
+    background-color: #2d4849;
+    color: white;
+}
