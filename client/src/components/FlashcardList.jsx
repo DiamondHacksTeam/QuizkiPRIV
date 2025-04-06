@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Flashcard, { SAMPLE_FLASHCARDS } from './Flashcarddata.jsx'; // Import the Flashcard component and sample data
+import './FlashCardList.css'
 
 const FlashcardList = () => {
   // State to track the selected group of flashcards
@@ -43,7 +44,6 @@ const FlashcardList = () => {
             <button
               key={group} // Unique key for each group button
               onClick={() => handleGroupClick(group)} // Set the selected group when clicked
-              className="group-button" // CSS class for styling the group buttons
             >
               {group} {/* Display the group name */}
             </button>
