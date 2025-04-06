@@ -12,11 +12,11 @@ router.get("/:desired", async (req, res) => {
 });
 //get specific user info
 router.get("/users/:name", async (req, res) => {
-    let collection = await db.collection("users");
-    let name = req.params.name;
-    let results = await collection.find({name: `${name}`}).toArray();
-    res.send(results).status(200);
-})
+  let collection = await db.collection("users");
+  let name = req.params.name;
+  let results = await collection.find({ email: `${name}` }).toArray();
+  res.send(results).status(200);
+});
 
 //adds a new term
 router.patch("/vocab/:user/:term/:ans", async (req, res) => {
@@ -25,10 +25,10 @@ router.patch("/vocab/:user/:term/:ans", async (req, res) => {
     let answer = req.params.ans;
 
     let user = req.params.user;
-    let query = {$push: {terms : {[term]: answer}}};
+    let query = { $push: { terms: { [term]: answer } } };
 
     let collection = await db.collection("users");
-    let result = await collection.updateOne({email: user}, query);
+    let result = await collection.updateOne({ email: user }, query);
     res.send(result).status(204);
   } catch (err) {
     console.error(err);
@@ -37,77 +37,79 @@ router.patch("/vocab/:user/:term/:ans", async (req, res) => {
 });
 //increments points
 router.patch("/balance/:user/:amnt", async (req, res) => {
-    try {
-      let user = req.params.user;
-      let amnt = parseInt(req.params.amnt);
-      
-      let query = {$inc: {points : amnt}};
-  
-      let collection = await db.collection("users");
-      let result = await collection.updateOne({email: user}, query);
-      res.send(result).status(204);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send("Error adding record");
-    }
-  });
+  try {
+    let user = req.params.user;
+    let amnt = parseInt(req.params.amnt);
+
+    let query = { $inc: { points: amnt } };
+
+    let collection = await db.collection("users");
+    let result = await collection.updateOne({ email: user }, query);
+    res.send(result).status(204);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error adding record");
+  }
+});
 //adds collected smiski
 router.patch("/smiskis/:user", async (req, res) => {
-    try {
-      let user = req.params.user;
-      let smiskiCollection = await db.collection("smiskis");
+  try {
+    let user = req.params.user;
+    let smiskiCollection = await db.collection("smiskis");
 
-      const smiskiName = await smiskiCollection.aggregate([{ $sample: { size: 1 } }]).toArray();
-      let smiskiInfo = await smiskiCollection.findOne({name: smiskiName[0].name});
+    const smiskiName = await smiskiCollection
+      .aggregate([{ $sample: { size: 1 } }])
+      .toArray();
+    let smiskiInfo = await smiskiCollection.findOne({
+      name: smiskiName[0].name,
+    });
 
-      let collection = await db.collection("users");
+    let collection = await db.collection("users");
 
-      let exists = await collection.findOne({name: smiskiName[0].name});
-      if (exists){
-        let query1 = {$inc: {points : -75}};
-        
-      }
-      let query1 = {$push: {collected : smiskiInfo}};
-      let query2 = {$inc: {points : -100}};
-
-      
-      let result1 = await collection.updateOne({email: user}, query1);
-      let result2 = await collection.updateOne({email: user}, query2);
-      res.send(result1).status(204);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send("Error adding record");
+    let exists = await collection.findOne({ name: smiskiName[0].name });
+    if (exists) {
+      let query1 = { $inc: { points: -75 } };
     }
-  });
+    let query1 = { $push: { collected: smiskiInfo } };
+    let query2 = { $inc: { points: -100 } };
 
-//for posting new smiskis 
+    let result1 = await collection.updateOne({ email: user }, query1);
+    let result2 = await collection.updateOne({ email: user }, query2);
+    res.send(result1).status(204);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error adding record");
+  }
+});
+
+//for posting new smiskis
 router.post("/smiskis/:name/:series/:img", async (req, res) => {
-    try {
-      let newDocument = {
-        name: req.params.name,
-        series: req.params.series,
-        img: decodeURI(req.params.img)
-      };
-      let collection = await db.collection("smiskis");
-      let result = await collection.insertOne(newDocument);
-      res.send(result).status(204);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send("Error adding record");
-    }
-  });
+  try {
+    let newDocument = {
+      name: req.params.name,
+      series: req.params.series,
+      img: decodeURI(req.params.img),
+    };
+    let collection = await db.collection("smiskis");
+    let result = await collection.insertOne(newDocument);
+    res.send(result).status(204);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error adding record");
+  }
+});
 
 //resets progress
 router.delete("/:user", async (req, res) => {
   let user = req.params.user;
   let collection = db.collection("users");
   try {
-    let resetPoints = {$set: {points: 0}}
-    let resetCollected = {$set: {collected: []}}
-    let resetTerms = {$set: {terms: []}}
-    let result = await collection.updateOne({email: user}, resetPoints);
-    let resultt = await collection.updateOne({email: user}, resetCollected);
-    let resulttt = await collection.updateOne({email: user}, resetTerms);
+    let resetPoints = { $set: { points: 0 } };
+    let resetCollected = { $set: { collected: [] } };
+    let resetTerms = { $set: { terms: [] } };
+    let result = await collection.updateOne({ email: user }, resetPoints);
+    let resultt = await collection.updateOne({ email: user }, resetCollected);
+    let resulttt = await collection.updateOne({ email: user }, resetTerms);
 
     res.send(result).status(200);
   } catch (err) {
