@@ -31,7 +31,7 @@ export const Collection = () => {
   }, [smiskis]);
 
   return (
-    <div>
+    <div className="outer-container">
       <div className="collection-header">
         <h1>My Smiski Collection</h1>
       </div>
