@@ -45,6 +45,7 @@ function ImageSpinner() {
 
   const [currentImage, setCurrentImage] = useState(images[0]);
   const [spinning, setSpinning] = useState(false);
+  const [points, setPoints] = useState(0); // Points to check if user can spi
   const [smiski, setSmiski] = useState(null);
   const [smiskiIndex, setSmiskiIndex] = useState(null);
   const { isAuthenticated, user } = useAuth0();
@@ -100,8 +101,28 @@ function ImageSpinner() {
     }
   };
 
+  async function getPoints(email) {
+      let response = await fetch(`http://localhost:5050/records/users/${email}`);
+      const result = await response.json();
+      return result[0].points;
+    }
+
+  useEffect(() => {
+    if (isAuthenticated && user?.email) {
+      getPoints(user.email).then(
+        (fetchedPoints) => {
+          setPoints(fetchedPoints);
+        },
+        [isAuthenticated, user]
+      );
+    }
+  });
   const cycleImage = () => {
     if (spinning) {
+      return;
+    }
+    if (points < 100) {
+      alert("You need at least 100 points to open a new blind box.");
       return;
     }
 
