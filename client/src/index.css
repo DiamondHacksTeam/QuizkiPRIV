@@ -13,3 +13,7 @@ html, body {
   padding: 0; /* Removes default padding */
   box-sizing: border-box;
 }
+
+#root {
+  height: 100%;
+}
