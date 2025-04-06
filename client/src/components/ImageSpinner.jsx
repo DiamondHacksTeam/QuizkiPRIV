@@ -9,24 +9,24 @@ function ImageSpinner() {
   const intervals = [3000, 4000, 5000, 6000];
   const smiskis = {
     Bath: [
-      "Shampoo",
-      "Not Looking",
+      "Shampooing",
+      "Not_Looking",
       "Scrubbing",
-      "With Duck",
+      "With_Duck",
       "Dazed",
       "Looking",
     ],
     Toilet: [
       "Peek-A-Boo",
-      "Little (Smelly)",
+      "Little_(Smelly)",
       "Squatting",
-      "Helping Out",
+      "Helping_Out",
       "Resting",
-      "Holding In",
+      "Holding_In",
     ],
     Sunday: [
-      "Blowing Bubbles",
-      "Paper Airplane",
+      "Blowing_Bubbles",
+      "Paper_Airplane",
       "Sunbathing",
       "Sing-Along",
       "Skateboarding",
@@ -36,11 +36,11 @@ function ImageSpinner() {
       "Approving",
       "Researching",
       "Presenting",
-      "Good Idea",
-      "On the Rord",
-      "Group Think",
+      "Good_Idea",
+      "On_the_Rord",
+      "Group_Think",
     ],
-    "Wrong Universe!": ["Troll"],
+    Exercising: ["Crunches", "Stretching", "Dumbbell", "Balance", "Aerobics"],
   };
 
   const [currentImage, setCurrentImage] = useState(images[0]);
