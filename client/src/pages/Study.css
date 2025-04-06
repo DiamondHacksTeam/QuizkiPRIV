@@ -1,0 +1,17 @@
+.paper{
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  position: relative;
+  border-radius: 0.5rem; /* Rounded corners */
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3); /* Add a shadow effect */
+  background-color: #fbeac5;
+  color: black;
+  transform-style: preserve-3d; /* Enable 3D transformations */
+  height: 100%;
+  width: 75%;
+  cursor: pointer; /* Change the cursor to a pointer */
+  transition: 150ms; /* Smooth transition for transformations */
+  transform: perspective(1000px) rotateY(var(--rotate-y, 0)); /* Perspective effect */
+  margin: auto;
+}
