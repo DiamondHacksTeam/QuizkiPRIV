@@ -1,3 +1,11 @@
+import "./gacha.css";
+import ImageSpinner from "../components/ImageSpinner";
+
 export const Gacha = () => {
-    return <></>;
-}
+  return (
+    <div className="gachaContainer">
+      <h1>Gacha</h1>
+      <ImageSpinner />
+    </div>
+  );
+};
