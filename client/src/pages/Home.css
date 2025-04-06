@@ -1,0 +1,44 @@
+.header-container {
+    display: flex;
+    align-items: center; /* Aligns items vertically */
+    gap: 0.5rem; /* Adds spacing between the header and the icon */
+    /*margin-bottom: 1.5rem; */
+    background-color: #bcdad3;
+}
+
+.header-container h1 {
+    display: block;
+    font-size: 4rem; /* Sets the font size for the main header */
+    color: #2d4849; /* Sets a default color for the header text */
+    background-color: #bcdad3;
+    border: 5px solid  #2d4849; /* Adds a brown border */
+    border-radius: 20px; /* Rounds the corners */
+    padding: 10px 40px; /* Adds more padding on the sides */
+    text-align: center; /* Centers the text inside the header */
+    margin: 20px auto; /* Adds vertical margin and centers the header horizontally */
+    position: relative; /* Changes position to relative */
+    top: 20px; /* Shifts the header down by 20px */
+}
+
+.header-container h2,
+.header-container a {
+    margin: 0; /* Removes default margin for headers and links */
+    margin-left: 40px;
+    text-decoration: none; /* Ensures links don't have underlines */
+    color: inherit; /* Keeps link color consistent with text */
+    font-size: 2rem; /* Sets a default size for secondary headers */
+}
+
+.header-container svg {
+    font-size: 1.5rem; /* Adjusts the size of the icon */
+    color: #555; /* Sets the color of the icon */
+    margin-left: 10px;
+}
+
+.header-container a:hover {
+    color: #f6f1df ;
+}
+
+.header-container a:hover svg {
+    color: #f6f1df ; /* Changes the icon color on hover */
+}
