@@ -138,3 +138,24 @@ body{
     color: white;
 }
 
+/* Ensure the parent container takes up the full height of the viewport */
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Make the container span the full height of the viewport */
+}
+
+/* Position the clear-all button at the bottom */
+.clear-all-button {
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.clear-all-button button:hover {
+    background-color: #cc0000;
+    cursor: pointer;
+}
