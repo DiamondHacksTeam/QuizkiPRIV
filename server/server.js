@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { MongoClient, ServerApiVersion } from "mongodb";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
 dotenv.config();
 
