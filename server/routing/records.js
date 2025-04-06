@@ -12,11 +12,11 @@ router.get("/:desired", async (req, res) => {
 });
 //get specific user info
 router.get("/users/:name", async (req, res) => {
-    let collection = await db.collection("users");
-    let name = req.params.name;
-    let results = await collection.find({email: `${name}`}).toArray();
-    res.send(results).status(200);
-})
+  let collection = await db.collection("users");
+  let name = req.params.name;
+  let results = await collection.find({ email: `${name}` }).toArray();
+  res.send(results).status(200);
+});
 
 //adds a new term
 router.patch("/vocab/:user/:term/:ans/:group", async (req, res) => {
@@ -54,20 +54,20 @@ router.patch("/vocab/:user/:term/:ans/:group", async (req, res) => {
 });
 //increments points
 router.patch("/balance/:user/:amnt", async (req, res) => {
-    try {
-      let user = req.params.user;
-      let amnt = parseInt(req.params.amnt);
-      
-      let query = {$inc: {points : amnt}};
-  
-      let collection = await db.collection("users");
-      let result = await collection.updateOne({email: user}, query);
-      res.send(result).status(204);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send("Error adding record");
-    }
-  });
+  try {
+    let user = req.params.user;
+    let amnt = parseInt(req.params.amnt);
+
+    let query = { $inc: { points: amnt } };
+
+    let collection = await db.collection("users");
+    let result = await collection.updateOne({ email: user }, query);
+    res.send(result).status(204);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error adding record");
+  }
+});
 //adds collected smiski
 router.patch("/smiskis/:user/:smiskiName", async (req, res) => {
     try {
@@ -76,7 +76,7 @@ router.patch("/smiskis/:user/:smiskiName", async (req, res) => {
 
       let smiskiInfo = await smiskiCollection.findOne({name: smiskiName});
 
-      let collection = await db.collection("users");
+    let collection = await db.collection("users");
 
     //   let exists = await collection.findOne({name: smiskiName[0].name});
       
@@ -104,22 +104,22 @@ router.patch("/smiskis/:user/:smiskiName", async (req, res) => {
     }
   });
 
-//for posting new smiskis 
+//for posting new smiskis
 router.post("/smiskis/:name/:series/:img", async (req, res) => {
-    try {
-      let newDocument = {
-        name: req.params.name,
-        series: req.params.series,
-        img: decodeURI(req.params.img)
-      };
-      let collection = await db.collection("smiskis");
-      let result = await collection.insertOne(newDocument);
-      res.send(result).status(204);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send("Error adding record");
-    }
-  });
+  try {
+    let newDocument = {
+      name: req.params.name,
+      series: req.params.series,
+      img: decodeURI(req.params.img),
+    };
+    let collection = await db.collection("smiskis");
+    let result = await collection.insertOne(newDocument);
+    res.send(result).status(204);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error adding record");
+  }
+});
 
 //resets flashcards
 router.delete("/:user", async (req, res) => {
