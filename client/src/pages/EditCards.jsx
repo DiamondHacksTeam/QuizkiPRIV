@@ -59,23 +59,61 @@ export default function Create() {
   const navigate = useNavigate();
 
   // Function to add a new flashcard to the selected group
-  const addFlashcard = (question, answer) => {
-    const newFlashcard = {
-      id: flashcards.length + 1,
-      question,
-      answer,
-      group: selectedGroup,
-    };
-    setFlashcards([...SAMPLE_FLASHCARDS, newFlashcard]);
-    setCurrentPage('list'); // Navigate to the list page after adding
+  const addFlashcard = async (question, answer) => {
+    try {
+
+      const response = await fetch(
+        `http://localhost:5050/records/vocab/${user.email}/${question}/${answer}/${selectedGroup}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ question, answer })
+        }
+      );
+
+      if (!response.ok) throw new Error('Failed to add flashcard');
+
+      const newFlashcard = {
+        id: Date.now(),
+        question,
+        answer,
+        group: selectedGroup,
+      };
+      
+      setFlashcards(prev => [...prev, newFlashcard]);
+      return true;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
   };
 
   // Function to create a new group
-  const createGroup = (groupName) => {
-    if (!groups.includes(groupName)) {
+  const createGroup = async (groupName) => {
+    if (!groupName.trim()) {
+      alert("Group name cannot be empty");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:5050/records/vocab/${user.email}/${groupName}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }
+      );
+
+      if (!response.ok) throw new Error('Failed to create group');
       setGroups([...groups, groupName]);
-      setSelectedGroup(groupName);
-      setCurrentPage('create'); // Navigate to the create flashcard page
+      return groupName; // Return the created group name
+    } catch (error) {
+      console.error("Error creating group:", error);
+      throw error; // Re-throw for error handling in components
     }
   };
 
@@ -131,7 +169,7 @@ export default function Create() {
       )}
 
       {/* Flashcard list page */}
-      {currentPage === 'list' && <FlashcardList flashcards={flashcards} />}
+      {currentPage === 'list' && <FlashcardList flashcards={SAMPLE_FLASHCARDS} />}
 
       {/* Button to navigate to the Flashcards page */}
       <div className="view-flashcards-button">
