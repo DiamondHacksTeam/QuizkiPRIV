@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './Study.css';
-import FlashcardList from '../components/FlashcardList.jsx';
-function Study() {
+
+export default function Study() {
     return (
-        <h1>Study</h1>
+        <div className='paper'>
+            <h1>Study Guide</h1>
+        </div>
     );
 }
 
-export default Study;
