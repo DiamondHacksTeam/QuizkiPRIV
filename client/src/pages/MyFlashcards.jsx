@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FlashcardList from '../components/FlashcardList.jsx'; // Component to display a list of flashcards
 import CreateFlashcard from '../components/CreateFlashcard.jsx'; // Component to create a new flashcard
-import './Flashcards.css'; // CSS for styling the Flashcards page
+import './MyFlashcards.css'; // CSS for styling the Flashcards page
 
 function Flashcards() {
   // State to hold the sample flashcards
