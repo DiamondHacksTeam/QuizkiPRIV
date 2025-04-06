@@ -83,7 +83,7 @@ const Chatbot = () => {
         id="chatbot-toggler"
         onClick={() => setShowChatbot((prev) => !prev)}
       >
-        <span>!</span>
+        <img className="profSmiski" src="../../public/profSmiski.png" />
       </button>
       <div className="chatbot-popup">
         <div className="chat-header">

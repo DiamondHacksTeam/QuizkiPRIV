@@ -229,3 +229,18 @@
   align-items: center;
   justify-content: center;
 }
+
+.profSmiski {
+  position: fixed;
+  bottom: 30px;
+  right: 35px;
+  border: none;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  cursor: pointer;
+  border-radius: 50%;
+  background: #2d4849;
+  align-items: center;
+  justify-content: center;
+}
