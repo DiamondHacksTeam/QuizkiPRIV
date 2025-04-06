@@ -45,6 +45,7 @@ function ImageSpinner() {
   const [currentImage, setCurrentImage] = useState(images[0]);
   const [spinning, setSpinning] = useState(false);
   const [smiski, setSmiski] = useState(null);
+  const [smiskiIndex, setSmiskiIndex] = useState(null);
 
   const resetState = () => {
     setCurrentImage(images[0]);
@@ -73,7 +74,7 @@ function ImageSpinner() {
   useEffect(() => {
     if (currentImage) {
       const series = smiskis[currentImage];
-      setSmiski(series[Math.floor(Math.random() * series.length)]);
+      setSmiskiIndex(Math.floor(Math.random() * series.length));
     }
   }, [currentImage]);
 
@@ -97,8 +98,15 @@ function ImageSpinner() {
       if (elapsed >= duration) {
         clearInterval(interval);
         setSpinning(false);
+
+        const finalImage = images[randomIndex];
+        const series = smiskis[finalImage];
+        const randomSmiskiIndex = Math.floor(Math.random() * series.length);
+        setSmiski(series[randomSmiskiIndex]);
       }
     }, intervalTime);
+
+    setSmiski(smiskis[smiskiIndex]);
   };
 
   return (
