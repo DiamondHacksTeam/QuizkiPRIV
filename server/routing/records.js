@@ -52,13 +52,13 @@ router.patch("/balance/:user/:amnt", async (req, res) => {
     }
   });
 //adds collected smiski
-router.patch("/smiskis/:user/:smiski", async (req, res) => {
+router.patch("/smiskis/:user", async (req, res) => {
     try {
       let user = req.params.user;
-      let smiskiName = req.params.smiski;
       let smiskiCollection = await db.collection("smiskis");
-      let smiskiInfo = await smiskiCollection.findOne({name: smiskiName});
-      
+
+      const smiskiName = await smiskiCollection.aggregate([{ $sample: { size: 1 } }]).toArray();
+      let smiskiInfo = await smiskiCollection.findOne({name: smiskiName[0].name});
       let query1 = {$push: {collected : smiskiInfo}};
       let query2 = {$inc: {points : -100}};
 
