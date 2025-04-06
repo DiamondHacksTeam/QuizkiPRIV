@@ -90,10 +90,11 @@ router.patch("/smiskis/:user/:smiskiName", async (req, res) => {
     try {
       let user = req.params.user;
       let smiskiCollection = await db.collection("smiskis");
+      let smiskiName = req.params.smiskiName;
 
       let smiskiInfo = await smiskiCollection.findOne({name: smiskiName});
 
-    let collection = await db.collection("users");
+      let collection = await db.collection("users");
 
     //   let exists = await collection.findOne({name: smiskiName[0].name});
       
