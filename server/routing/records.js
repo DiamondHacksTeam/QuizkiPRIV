@@ -103,12 +103,8 @@ router.delete("/:user", async (req, res) => {
   let user = req.params.user;
   let collection = db.collection("users");
   try {
-    let resetPoints = {$set: {points: 0}}
-    let resetCollected = {$set: {collected: []}}
     let resetTerms = {$set: {terms: []}}
-    let result = await collection.updateOne({email: user}, resetPoints);
-    let resultt = await collection.updateOne({email: user}, resetCollected);
-    let resulttt = await collection.updateOne({email: user}, resetTerms);
+    let result = await collection.updateOne({email: user}, resetTerms);
 
     res.send(result).status(200);
   } catch (err) {
