@@ -13,6 +13,7 @@
   padding: 2rem;
   margin: auto;
   gap: 1.5rem;
+  
 }
 
 .questions-container {
@@ -70,5 +71,69 @@
 }
 
 .submit-button:hover {
+  background-color: #3a5a80;
+}
+
+.text {
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  height: 100vh; /* Take up the full viewport height */
+  text-align: center; /* Center the text */
+  color: #2d4849; /* Text color */
+  font-size: 1.5rem; /* Font size for the text */
+}
+
+.group-selection {
+  text-align: center;
+}
+
+.group-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.group-button {
+  padding: 10px 20px;
+  background-color: #fbeac5;
+  color: #2d4849;
+  border: 2px solid #2d4849;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.group-button:hover {
+  background-color: #2d4849;
+  color: white;
+}
+
+.test-container {
+  text-align: center;
+}
+
+.test-container h1 {
+  text-align: center; /* Center the heading */
+  font-size: 2rem; /* Adjust font size for better visibility */
+  margin-bottom: 20px; /* Add spacing below the heading */
+  color: #2d4849; /* Ensure consistent text color */
+}
+
+.back-button {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background-color: #bcdad3;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.back-button:hover {
   background-color: #3a5a80;
 }

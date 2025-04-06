@@ -74,3 +74,32 @@ body {
   margin-top: 0;
 }
 
+/* Styling for the no-groups container */
+.no-groups {
+  display: flex;
+  flex-direction: column; /* Stack the text and button vertically */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  height: 70vh; /* Take up most of the viewport height */
+  text-align: center; /* Center the text */
+  color: #2d4849; /* Text color */
+  font-size: 1.5rem; /* Font size for the text */
+}
+
+/* Styling for the Edit Flashcards button */
+.edit-flashcards-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #fbeac5;
+  color: #2d4849;
+  border: 2px solid #2d4849;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.edit-flashcards-button:hover {
+  background-color: #2d4849;
+  color: white;
+}

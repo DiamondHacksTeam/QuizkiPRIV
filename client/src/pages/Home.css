@@ -78,3 +78,27 @@
     margin-bottom: 20px; /* Adds space below each image container */
 }
 
+.flashcard-groups {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 20px;
+}
+
+.group-button {
+  padding: 10px 20px;
+  background-color: #fbeac5;
+  color: #2d4849;
+  border: 2px solid #2d4849;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.group-button:hover {
+  background-color: #2d4849;
+  color: white;
+}
+

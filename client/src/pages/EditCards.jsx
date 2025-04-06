@@ -182,9 +182,16 @@ export default function Create() {
           <input
             type="text"
             placeholder="Enter group name"
-            onKeyDown={(e) => {
+            onKeyDown={async (e) => {
               if (e.key === 'Enter' && e.target.value.trim() !== '') {
-                createGroup(e.target.value.trim());
+                const groupName = e.target.value.trim();
+                try {
+                  await createGroup(groupName); // Create the group
+                  alert("New group created!"); // Show success message
+                  setCurrentPage('choose'); // Navigate back to the "choose" page
+                } catch (error) {
+                  alert("Failed to create group. Please try again."); // Handle errors
+                }
               }
             }}
           />

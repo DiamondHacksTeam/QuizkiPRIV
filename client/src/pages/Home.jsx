@@ -16,7 +16,7 @@ export const Home = () => {
 
       <div className="header-container">
         <Link to="/collection">
-          Smiski Collection
+          See Your Smiski Collection
           <FaRegArrowAltCircleRight />
         </Link>
       </div>
