@@ -1,143 +1,138 @@
 .collection-header {
-    font-size: 1.5rem;
-    text-align: center;
-    background-color: #bcdad3;
-    padding-top: 20px;
-    color: #2d4849;
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: #bcdad3;
+  padding-top: 20px;
+  color: #2d4849;
 }
 
 .series-header {
-    padding-left: 20px; /* Shifts the series elements to the right */
-    background-color: #bcdad3; /* Sets the same background color */
-    text-decoration-line: underline; /* Underlines the series titles */
-    color: #2d4849;
+  padding-left: 20px; /* Shifts the series elements to the right */
+  background-color: #bcdad3; /* Sets the same background color */
+  text-decoration-line: underline; /* Underlines the series titles */
+  color: #2d4849;
 }
 
 .series-image1 {
-    display: flex; /* Uses flexbox to align images in a row */
-    flex-wrap: wrap; /* Allows images to wrap to the next line if needed */
-    gap: 80px; /* Adds space between the images */
-    padding: 20px; /* Adds padding around the image container */
-    background-color: #bcdad3; /* Ensures the background matches the page */
-    color: #2d4849;
+  display: flex; /* Uses flexbox to align images in a row */
+  flex-wrap: wrap; /* Allows images to wrap to the next line if needed */
+  gap: 80px; /* Adds space between the images */
+  padding: 20px; /* Adds padding around the image container */
+  background-color: #bcdad3; /* Ensures the background matches the page */
+  color: #2d4849;
 }
 
 .series-image1 img {
-    width: 150px; /* Sets the width of the images */
-    height: auto; /* Maintains the aspect ratio */
-    border-radius: 8px; /* Optional: Adds rounded corners */
-  
+  width: 150px; /* Sets the width of the images */
+  height: auto; /* Maintains the aspect ratio */
+  border-radius: 8px; /* Optional: Adds rounded corners */
 }
 
 .series-image1 div {
-    /* This class is used to wrap each image for better styling */
-    display: flex; /* Ensures the image is centered in its container */
-    flex-direction: column;
-    justify-content: center; /* Centers the image horizontally */
-    align-items: center; /* Centers the image vertically */
-    margin-bottom: 20px; /* Adds space below each image container */
+  /* This class is used to wrap each image for better styling */
+  display: flex; /* Ensures the image is centered in its container */
+  flex-direction: column;
+  justify-content: center; /* Centers the image horizontally */
+  align-items: center; /* Centers the image vertically */
+  margin-bottom: 20px; /* Adds space below each image container */
 }
 
-
-
-
 .series-image2 {
-    display: flex; /* Uses flexbox to align images in a row */
-    flex-wrap: wrap; /* Allows images to wrap to the next line if needed */
-    gap: 85px; /* Adds space between the images */
-    padding: 20px; /* Adds padding around the image container */
-    background-color: #bcdad3; /* Ensures the background matches the page */
-    color: #2d4849;
+  display: flex; /* Uses flexbox to align images in a row */
+  flex-wrap: wrap; /* Allows images to wrap to the next line if needed */
+  gap: 85px; /* Adds space between the images */
+  padding: 20px; /* Adds padding around the image container */
+  background-color: #bcdad3; /* Ensures the background matches the page */
+  color: #2d4849;
 }
 
 .series-image2 img {
-    width: 150px; /* Sets the width of the images */
-    height: auto; /* Maintains the aspect ratio */
-    border-radius: 8px; /* Optional: Adds rounded corners */
+  width: 150px; /* Sets the width of the images */
+  height: auto; /* Maintains the aspect ratio */
+  border-radius: 8px; /* Optional: Adds rounded corners */
 }
 
 .series-image2 div {
-    /* This class is used to wrap each image for better styling */
-    display: flex; /* Ensures the image is centered in its container */
-    flex-direction: column;
-    justify-content: center; /* Centers the image horizontally */
-    align-items: center; /* Centers the image vertically */
-    margin-bottom: 20px; /* Adds space below each image container */
+  /* This class is used to wrap each image for better styling */
+  display: flex; /* Ensures the image is centered in its container */
+  flex-direction: column;
+  justify-content: center; /* Centers the image horizontally */
+  align-items: center; /* Centers the image vertically */
+  margin-bottom: 20px; /* Adds space below each image container */
 }
 
-
-
 .series-image3 {
-    display: flex; /* Uses flexbox to align images in a row */
-    flex-wrap: wrap; /* Allows images to wrap to the next line if needed */
-    gap: 90px; /* Adds space between the images */
-    padding: 20px; /* Adds padding around the image container */
-    background-color: #bcdad3; /* Ensures the background matches the page */
-    color: #2d4849;
+  display: flex; /* Uses flexbox to align images in a row */
+  flex-wrap: wrap; /* Allows images to wrap to the next line if needed */
+  gap: 90px; /* Adds space between the images */
+  padding: 20px; /* Adds padding around the image container */
+  background-color: #bcdad3; /* Ensures the background matches the page */
+  color: #2d4849;
 }
 
 .series-image3 img {
-    width: 150px; /* Sets the width of the images */
-    height: auto; /* Maintains the aspect ratio */
-    border-radius: 8px; /* Optional: Adds rounded corners */
+  width: 150px; /* Sets the width of the images */
+  height: auto; /* Maintains the aspect ratio */
+  border-radius: 8px; /* Optional: Adds rounded corners */
 }
 
 .series-image3 div {
-    /* This class is used to wrap each image for better styling */
-    display: flex; /* Ensures the image is centered in its container */
-    flex-direction: column;
-    justify-content: center; /* Centers the image horizontally */
-    align-items: center; /* Centers the image vertically */
-    margin-bottom: 20px; /* Adds space below each image container */
+  /* This class is used to wrap each image for better styling */
+  display: flex; /* Ensures the image is centered in its container */
+  flex-direction: column;
+  justify-content: center; /* Centers the image horizontally */
+  align-items: center; /* Centers the image vertically */
+  margin-bottom: 20px; /* Adds space below each image container */
 }
 
-
 .series-image4 {
-    display: flex; /* Uses flexbox to align images in a row */
-    flex-wrap: wrap; /* Allows images to wrap to the next line if needed */
-    gap: 90px; /* Adds space between the images */
-    padding: 20px; /* Adds padding around the image container */
-    background-color: #bcdad3; /* Ensures the background matches the page */
-    color: #2d4849;
+  display: flex; /* Uses flexbox to align images in a row */
+  flex-wrap: wrap; /* Allows images to wrap to the next line if needed */
+  gap: 90px; /* Adds space between the images */
+  padding: 20px; /* Adds padding around the image container */
+  background-color: #bcdad3; /* Ensures the background matches the page */
+  color: #2d4849;
 }
 
 .series-image4 img {
-    width: 150px; /* Sets the width of the images */
-    height: auto; /* Maintains the aspect ratio */
-    border-radius: 8px; /* Optional: Adds rounded corners */
+  width: 150px; /* Sets the width of the images */
+  height: auto; /* Maintains the aspect ratio */
+  border-radius: 8px; /* Optional: Adds rounded corners */
 }
 
 .series-image4 div {
-    /* This class is used to wrap each image for better styling */
-    display: flex; /* Ensures the image is centered in its container */
-    flex-direction: column;
-    justify-content: center; /* Centers the image horizontally */
-    align-items: center; /* Centers the image vertically */
-    margin-bottom: 20px; /* Adds space below each image container */
+  /* This class is used to wrap each image for better styling */
+  display: flex; /* Ensures the image is centered in its container */
+  flex-direction: column;
+  justify-content: center; /* Centers the image horizontally */
+  align-items: center; /* Centers the image vertically */
+  margin-bottom: 20px; /* Adds space below each image container */
 }
 
-
-
 .series-image5 {
-    display: flex; /* Uses flexbox to align images in a row */
-    flex-wrap: wrap; /* Allows images to wrap to the next line if needed */
-    gap: 90px; /* Adds space between the images */
-    padding: 20px; /* Adds padding around the image container */
-    background-color: #bcdad3; /* Ensures the background matches the page */
-    color: #2d4849;
+  display: flex; /* Uses flexbox to align images in a row */
+  flex-wrap: wrap; /* Allows images to wrap to the next line if needed */
+  gap: 90px; /* Adds space between the images */
+  padding: 20px; /* Adds padding around the image container */
+  background-color: #bcdad3; /* Ensures the background matches the page */
+  color: #2d4849;
 }
 
 .series-image5 img {
-    width: 150px; /* Sets the width of the images */
-    height: auto; /* Maintains the aspect ratio */
-    border-radius: 8px; /* Optional: Adds rounded corners */
+  width: 150px; /* Sets the width of the images */
+  height: auto; /* Maintains the aspect ratio */
+  border-radius: 8px; /* Optional: Adds rounded corners */
 }
 
 .series-image5 div {
-    /* This class is used to wrap each image for better styling */
-    display: flex; /* Ensures the image is centered in its container */
-    flex-direction: column;
-    justify-content: center; /* Centers the image horizontally */
-    align-items: center; /* Centers the image vertically */
-    margin-bottom: 20px; /* Adds space below each image container */
+  /* This class is used to wrap each image for better styling */
+  display: flex; /* Ensures the image is centered in its container */
+  flex-direction: column;
+  justify-content: center; /* Centers the image horizontally */
+  align-items: center; /* Centers the image vertically */
+  margin-bottom: 20px; /* Adds space below each image container */
+}
+
+.locked {
+  filter: grayscale(100%);
 }
