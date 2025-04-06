@@ -1,6 +1,9 @@
 import "./App.css";
+import LoginButton from "./components/LoginButton";
+import LogoutButton from "./components/LogoutButton";
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
+
 import Study from "./pages/study";
 import { Collection } from "./pages/collection"; 
 import { Gacha } from "./pages/gacha";
@@ -22,6 +25,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/create" element={<Create />} />
       </Routes>
+      <LoginButton />
+      <LogoutButton />
     </div>
   );
 }
