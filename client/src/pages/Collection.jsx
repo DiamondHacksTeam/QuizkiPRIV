@@ -16,27 +16,27 @@ export const Collection = () => {
             <div className="series-image1">
                 <div>
                     <img src="../../public/sunday_airplane.png" alt="Airplane Smiski" />
-                    <p>Airplane Smiski</p>
+                    <p>Smiski Paper Airplane</p>
                 </div>
                 <div>
                     <img src="../../public/sunday_bubbles.png" alt="Bubbles Smiski" />
-                    <p>Bubbles Smiski</p>
+                    <p>Smiski Blowing Bubbles</p>
                 </div>
                 <div>
                     <img src="../../public/sunday_garden.png" alt="Garden Smiski" />
-                    <p>Garden Smiski</p>
+                    <p>Smiski Gardening</p>
                 </div>
                 <div>
                     <img src="../../public/sunday_sing.png" alt="Singing Smiski" />
-                    <p>Singing Smiski</p>
+                    <p>Smiski Singing Along</p>
                 </div>
                 <div>
                     <img src="../../public/sunday_skateboard.png" alt="Skateboard Smiski" />
-                    <p>Skateboard Smiski</p>
+                    <p>Smiski Skateboarding</p>
                 </div>
                 <div>
                     <img src="../../public/sunday_sunbathe.png" alt="Sunbathe Smiski" />
-                    <p>Sunbathe Smiski</p>
+                    <p>Smiski Sunbathing</p>
                 </div>
             </div>
 

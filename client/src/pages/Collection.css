@@ -3,20 +3,23 @@
     text-align: center;
     background-color: #bcdad3;
     padding-top: 20px;
+    color: #2d4849;
 }
 
 .series-header {
     padding-left: 20px; /* Shifts the series elements to the right */
     background-color: #bcdad3; /* Sets the same background color */
     text-decoration-line: underline; /* Underlines the series titles */
+    color: #2d4849;
 }
 
 .series-image1 {
     display: flex; /* Uses flexbox to align images in a row */
     flex-wrap: wrap; /* Allows images to wrap to the next line if needed */
-    gap: 90px; /* Adds space between the images */
+    gap: 80px; /* Adds space between the images */
     padding: 20px; /* Adds padding around the image container */
     background-color: #bcdad3; /* Ensures the background matches the page */
+    color: #2d4849;
 }
 
 .series-image1 img {
@@ -44,6 +47,7 @@
     gap: 85px; /* Adds space between the images */
     padding: 20px; /* Adds padding around the image container */
     background-color: #bcdad3; /* Ensures the background matches the page */
+    color: #2d4849;
 }
 
 .series-image2 img {
@@ -69,6 +73,7 @@
     gap: 90px; /* Adds space between the images */
     padding: 20px; /* Adds padding around the image container */
     background-color: #bcdad3; /* Ensures the background matches the page */
+    color: #2d4849;
 }
 
 .series-image3 img {
@@ -93,6 +98,7 @@
     gap: 90px; /* Adds space between the images */
     padding: 20px; /* Adds padding around the image container */
     background-color: #bcdad3; /* Ensures the background matches the page */
+    color: #2d4849;
 }
 
 .series-image4 img {
@@ -118,6 +124,7 @@
     gap: 90px; /* Adds space between the images */
     padding: 20px; /* Adds padding around the image container */
     background-color: #bcdad3; /* Ensures the background matches the page */
+    color: #2d4849;
 }
 
 .series-image5 img {
