@@ -2,21 +2,23 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #b6e4af;
+    background-color: #f6f1df;
+    font-color:  #2d4849;
     position: sticky;
     top: 0;
     width: 100%;
     margin: 0;
     padding: 0;
+    border-bottom: 4px solid #2d4849;
 
 }
 
 nav .title {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin: 1rem;
     font-weight: bold;
     text-decoration: none;
-    color: white;
+    color: #2d4849
 }
 
 nav ul {
@@ -25,18 +27,30 @@ nav ul {
 
 nav ul li {
     list-style: none;
+    
 
 }
 
 nav ul li a {
     display: block;
     text-decoration: none; 
-    color: white;
-    padding: 0.5rem;
+    padding: 1rem;
     margin: 0 0.5rem;
+    border-radius: 0.5rem;
+    color: #2d4849; 
+    transition: all 0.1s ease; /* Smooth transition for hover and active states */
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+    background-color: #fbeac5; /* Hover background color */
+    border: 2px solid #2d4849; /* Hover border color */
     border-radius: 0.5rem;
 }
 
-nav ul li a:hover {
-    background-color: #8ccf7e;
-}   
+nav ul li a.active {
+    background-color: #fbeac5; /* Active background color */
+    border: 2px solid #2d4849; /* Active border color */
+    border-radius: 0.5rem;
+    color: #2d4849; /* Active text color */
+}
