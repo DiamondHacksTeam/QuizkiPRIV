@@ -37,7 +37,7 @@ function ImageSpinner() {
       "Researching",
       "Presenting",
       "Good_Idea",
-      "On_the_Rord",
+      "In_A_Hurry",
       "Group_Think",
     ],
     Exercising: ["Crunches", "Stretching", "Dumbbell", "Balance", "Aerobics"],
