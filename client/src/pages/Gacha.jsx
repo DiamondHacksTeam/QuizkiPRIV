@@ -6,6 +6,7 @@ export const Gacha = () => {
     <div className="gachaContainer">
       <h1>Gacha</h1>
       <ImageSpinner />
+      <p>100 Points to Play</p>
     </div>
   );
 };

@@ -3,13 +3,19 @@ import { useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./ImageSpinner.css";
 
+async function getPoints(email) {
+  let response = await fetch(`http://localhost:5050/records/users/${email}`);
+  const result = await response.json();
+  return result[0].points;
+}
+
 function ImageSpinner() {
   const location = useLocation();
   const images = ["Bath", "Sunday", "Toilet", "Work"];
   const intervals = [3000, 4000, 5000, 6000];
   const smiskis = {
     Bath: [
-      "Shampooing",
+      "Shampoo",
       "Not_Looking",
       "Scrubbing",
       "With_Duck",
@@ -47,6 +53,7 @@ function ImageSpinner() {
   const [spinning, setSpinning] = useState(false);
   const [smiski, setSmiski] = useState(null);
   const [smiskiIndex, setSmiskiIndex] = useState(null);
+  const [points, setPoints] = useState(0);
   const { isAuthenticated, user } = useAuth0();
 
   const resetState = () => {
@@ -100,8 +107,24 @@ function ImageSpinner() {
     }
   };
 
+  useEffect(() => {
+    if (isAuthenticated && user?.email) {
+      getPoints(user.email).then(
+        (fetchedPoints) => {
+          setPoints(fetchedPoints);
+        },
+        [isAuthenticated, user]
+      );
+    }
+  });
+
   const cycleImage = () => {
     if (spinning) {
+      return;
+    }
+
+    if (points < 100) {
+      alert("You need at least 100 points to open a new blind box.");
       return;
     }
 
@@ -138,6 +161,9 @@ function ImageSpinner() {
 
   return (
     <div className="spinnerContainer">
+      <p className="counter">
+        Your Points: {points !== null ? points : "Loading..."}
+      </p>
       <img src={`../../public/${currentImage}.png`} className="smiskiBox"></img>
       <button onClick={cycleImage} disabled={spinning}>
         {spinning ? "Spinning..." : "Spin"}

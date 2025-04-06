@@ -262,9 +262,9 @@ export const Collection = () => {
         <div>
           <img
             src="../../public/work_hurry.png"
-            className={dictionary["On_The_Rord"] ? "" : "locked"}
+            className={dictionary["On_the_Rord"] ? "" : "locked"}
           />
-          <p>Smiski In A Hurry</p>
+          <p>Smiski On the Rord</p>
         </div>
         <div>
           <img
