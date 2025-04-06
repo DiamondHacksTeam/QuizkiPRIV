@@ -121,14 +121,14 @@ export default function Create() {
     <div className="app">
       {/* Choose page: Decide to create a group or add to an existing group */}
       {currentPage === 'choose' && (
-        <div className="choose-container">
+        <div className="choose-container view-flashcards-button">
           <h2>What would you like to do?</h2>
           <button onClick={() => setCurrentPage('create-group')}>Create a New Group</button>
           {/* Conditionally render the text and group list only if there are groups */}
           {groups.length > 0 && (
             <>
               <h3>Or choose an existing group:</h3>
-              <div className="group-list">
+              <div className="group-list view-flashcards-button">
                 {groups.map((group) => (
                   <button
                     key={group}
