@@ -1,6 +1,6 @@
 .smiskiBox {
   height: 200px;
-  width: 200px;
+  width: auto;
 }
 
 .spinnerContainer {
@@ -8,4 +8,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px; /* Add space between each item */
+  margin-top: 50px;
+}
+
+.spinnerContainer button {
+  display: block;
+  border: 4px solid #2d4849; /* Border color */
+  border-radius: 20px;
+  background-color:  #fbeac5;
+  font-size: 2rem;
+  padding: 10px 20px;
+  color: #2d4849;
 }

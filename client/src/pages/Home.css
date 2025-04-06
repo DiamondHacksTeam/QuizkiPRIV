@@ -1,8 +1,3 @@
-.div {
-    background-color: #bcdad3;
-    height: 100%; /* Ensures the div takes the full height of its parent */
-}
-
 .home-container {
     background-color: #bcdad3;
 }
@@ -29,18 +24,19 @@
     top: 20px; /* Shifts the header down by 20px */
 }
 
+
 .header-container h2,
 .header-container a {
     margin: 0; /* Removes default margin for headers and links */
     padding-left: 40px;
     text-decoration: none; /* Ensures links don't have underlines */
-    color: inherit; /* Keeps link color consistent with text */
     font-size: 2rem; /* Sets a default size for secondary headers */
+    color: #2d4849;
 }
 
 .header-container svg {
     font-size: 1.5rem; /* Adjusts the size of the icon */
-    color: #555; /* Sets the color of the icon */
+    color: #2d4849; /* Sets the color of the icon */
     margin-left: 10px;
 }
 
@@ -50,4 +46,34 @@
 
 .header-container a:hover svg {
     color: #f6f1df ; /* Changes the icon color on hover */
+}
+
+
+
+
+
+.smiski-preview {
+    display: flex; /* Uses flexbox to align images in a row */
+    flex-wrap: wrap; /* Allows images to wrap to the next line if needed */
+    gap: 135px; /* Adds space between the images */
+    padding: 20px; /* Adds padding around the image container */
+    background-color: #bcdad3; /* Ensures the background matches the page */
+    padding-left: 4rem;
+    color: #2d4849;
+}
+
+.smiski-preview img {
+    width: 150px; /* Sets the width of the images */
+    height: auto; /* Maintains the aspect ratio */
+    border-radius: 8px; /* Optional: Adds rounded corners */
+  
+}
+
+.smiski-preview div {
+    /* This class is used to wrap each image for better styling */
+    display: flex; /* Ensures the image is centered in its container */
+    flex-direction: column;
+    justify-content: center; /* Centers the image horizontally */
+    align-items: center; /* Centers the image vertically */
+    margin-bottom: 20px; /* Adds space below each image container */
 }
