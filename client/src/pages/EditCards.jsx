@@ -97,11 +97,4 @@ function Create() {
     </div>
   );
 }
-
-// Sample flashcards data
-const SAMPLE_FLASHCARDS = [
-  { id: 1, question: 'What is 2 + 2?', answer: '4', group: 'Math' },
-  { id: 2, question: 'What is the capital of France?', answer: 'Paris', group: 'History' },
-];
-
 export default Create;
