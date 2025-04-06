@@ -125,7 +125,7 @@ export default function Create() {
     if (!confirmClear) return;
 
     try {
-      const response = await fetch(`http://localhost:5050/records/clear/${user.email}`, {
+      const response = await fetch(`http://localhost:5050/records/${user.email}`, {
         method: 'DELETE',
       });
 
