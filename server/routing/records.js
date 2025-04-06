@@ -52,6 +52,7 @@ router.patch("/vocab/:user/:term/:ans/:group", async (req, res) => {
     res.status(500).send("Error adding record");
   }
 });
+//adding new group
 router.patch("/vocab/:user/:group", async (req, res) => {
     try{
         let group = req.params.group;
@@ -89,10 +90,11 @@ router.patch("/smiskis/:user/:smiskiName", async (req, res) => {
     try {
       let user = req.params.user;
       let smiskiCollection = await db.collection("smiskis");
+      let smiskiName = req.params.smiskiName;
 
       let smiskiInfo = await smiskiCollection.findOne({name: smiskiName});
 
-    let collection = await db.collection("users");
+      let collection = await db.collection("users");
 
     //   let exists = await collection.findOne({name: smiskiName[0].name});
       

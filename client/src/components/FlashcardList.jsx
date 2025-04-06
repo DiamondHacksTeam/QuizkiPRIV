@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import Flashcard from './Flashcarddata.jsx';
+import './FlashCardList.css'
 
 export default function FlashcardList() {
   const [selectedGroup, setSelectedGroup] = useState(null);
@@ -67,6 +68,7 @@ export default function FlashcardList() {
         <div className="flashcard-groups">
           {groups.map((group) => (
             <button
+
               key={group}
               onClick={() => handleGroupClick(group)}
               className="group-button"
