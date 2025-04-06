@@ -1,10 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from 'react-router-dom'; // Hook for navigation between pages
 import FlashcardList from '../components/FlashcardList.jsx'; // Component to display flashcards
 import CreateFlashcard from '../components/CreateFlashcard.jsx'; // Component to create a flashcard
 import './EditCards.css'; // CSS for styling the Create page
+import { SAMPLE_FLASHCARD } from '../components/Flashcarddata.jsx';
 
-function Create() {
+export default function Create() {
+
+  const [SAMPLE_FLASHCARDS, setSample] = useState([]);
+
+  const { user } = useAuth0();
+
+  useEffect(() => {
+    const fetchFlashcards = async () => {
+      if (!user?.email) return;
+      
+      try {
+        const response = await fetch(`http://localhost:5050/records/users/${user.email}`);
+        const result = await response.json();
+        const terms = result[0]?.terms || [];
+        
+        const formatted = terms.flatMap(languageGroup => {
+          const [type, pairs] = Object.entries(languageGroup)[0];
+          return Object.entries(pairs).map(([q, a], i) => ({
+            id: `${type}-${i}`,
+            question: q,
+            answer: a,
+            group: type.charAt(0).toUpperCase() + type.slice(1)
+          }));
+        });
+        
+        setFlashcards(formatted);
+      } catch (error) {
+        console.error("Error fetching flashcards:", error);
+      }
+    };
+
+    fetchFlashcards();
+  }, [user?.email]);
+
   // State to hold the flashcards
   const [flashcards, setFlashcards] = useState(SAMPLE_FLASHCARDS);
 
@@ -97,4 +132,3 @@ function Create() {
     </div>
   );
 }
-export default Create;
