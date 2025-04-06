@@ -30,7 +30,7 @@ export const Navbar = () => {
             to="/create"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            Create Flashcards
+            Edit Flashcards
           </NavLink>
         </li>
         <li>

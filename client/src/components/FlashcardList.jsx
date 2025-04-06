@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Flashcard, { SAMPLE_FLASHCARDS } from './Flashcard.jsx'; // Import the Flashcard component and sample data
+import Flashcard, { SAMPLE_FLASHCARDS } from './Flashcarddata.jsx'; // Import the Flashcard component and sample data
 
 const FlashcardList = () => {
   // State to track the selected group of flashcards
