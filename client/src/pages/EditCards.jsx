@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Hook for navigation between pages
 import FlashcardList from '../components/FlashcardList.jsx'; // Component to display flashcards
 import CreateFlashcard from '../components/CreateFlashcard.jsx'; // Component to create a flashcard
-import './Create.css'; // CSS for styling the Create page
+import './EditCards.css'; // CSS for styling the Create page
 
 function Create() {
   // State to hold the flashcards
