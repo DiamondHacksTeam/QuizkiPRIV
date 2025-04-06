@@ -16,7 +16,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/study" element={<Chatbot />} />
+        <Route path="/study" element={<Study />} />
         <Route path="/flashcards" element={<Flashcards />} />
         <Route path="/collection" element={<Collection />} />
         <Route path="/gacha" element={<Gacha />} />
