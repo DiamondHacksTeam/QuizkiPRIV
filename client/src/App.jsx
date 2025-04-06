@@ -1,7 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
-
 import Study from "./pages/study";
 import { Collection } from "./pages/collection"; 
 import { Gacha } from "./pages/gacha";
