@@ -8,7 +8,7 @@ function Flashcards() {
   const [flashcards] = useState(SAMPLE_FLASHCARDS);
 
   // State to track the current page ('list' or 'create')
-  const [currentPage, setCurrentPage] = useState("");
+  const [currentPage, setCurrentPage] = useState("list"); // Default to 'list'
 
   return (
     <div className="app">
@@ -18,11 +18,6 @@ function Flashcards() {
       {/* If the current page is 'create', display the CreateFlashcard component */}
       {currentPage === "create" && (
         <CreateFlashcard addFlashcard={flashcards} />
-      )}
-
-      {/* If the current page is not 'list', show the "View Flashcards" button */}
-      {currentPage !== "list" && (
-        <button onClick={() => setCurrentPage("list")}>View Flashcards</button>
       )}
     </div>
   );
