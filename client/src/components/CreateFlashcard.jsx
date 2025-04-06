@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './CreateFlashcard.css'; // Import CSS for styling
 
 const CreateFlashcard = ({ addFlashcard }) => {
   // State to store the question input
