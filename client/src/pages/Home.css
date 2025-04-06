@@ -2,15 +2,16 @@
     display: flex;
     align-items: center; /* Aligns items vertically */
     gap: 0.5rem; /* Adds spacing between the header and the icon */
-    margin-bottom: 1.5rem;
+    /*margin-bottom: 1.5rem; */
+    background-color: #bcdad3;
 }
 
 .header-container h1 {
     display: block;
     font-size: 4rem; /* Sets the font size for the main header */
-    color: #333; /* Sets a default color for the header text */
-    background-color: rgb(133, 188, 133);
-    border: 5px solid rgb(165, 89, 42); /* Adds a brown border */
+    color: #2d4849; /* Sets a default color for the header text */
+    background-color: #bcdad3;
+    border: 5px solid  #2d4849; /* Adds a brown border */
     border-radius: 20px; /* Rounds the corners */
     padding: 10px 40px; /* Adds more padding on the sides */
     text-align: center; /* Centers the text inside the header */
@@ -35,9 +36,9 @@
 }
 
 .header-container a:hover {
-    color: rgb(133, 188, 133)
+    color: #f6f1df ;
 }
 
 .header-container a:hover svg {
-    color: rgb(133, 188, 133); /* Changes the icon color on hover */
+    color: #f6f1df ; /* Changes the icon color on hover */
 }
