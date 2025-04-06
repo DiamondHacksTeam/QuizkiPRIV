@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './Study.css';
+import FlashcardList from '../components/FlashcardList.jsx';
 function Study() {
     return (
-        <div>
-        </div>
+        <h1>Study</h1>
     );
 }
+
+export default Study;
