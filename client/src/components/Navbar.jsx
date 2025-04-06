@@ -1,5 +1,6 @@
-import React from 'react';
+import React from "react";
 import { Link } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
 import "./Navbar.css";
 
 export const Navbar = () => {
@@ -22,14 +23,15 @@ export const Navbar = () => {
         <li>
           <Link to="/collection">Collection</Link>
         </li>
-        <li> 
+        <li>
           <Link to="/gacha">Gacha</Link>
         </li>
-        <li> 
-          <Link to="/profile">Profile</Link>
+        <li>
+          <Link to="/profile">
+            <CgProfile className="profileIcon" />
+          </Link>
         </li>
       </ul>
     </nav>
   );
-}
-
+};
