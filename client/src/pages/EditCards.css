@@ -115,3 +115,25 @@ body{
 .create-group-container button:hover {
     background-color: #5a6268;
 }
+
+.view-flashcards-button button{
+    display: block;
+    border: 4px solid #2d4849;
+    border-radius: 20px;
+    background-color: #fbeac5;
+    font-size: 1.4rem;
+    padding: 10px 20px;
+    color: #2d4849;
+    flex: column;
+    width: 160px;
+    height: 100px;
+    margin: auto;
+    margin-top: 10px;
+    
+}
+
+.view-flashcards-button button:hover {
+    cursor:pointer;
+    background-color: #2d4849;
+    color: white;
+}
