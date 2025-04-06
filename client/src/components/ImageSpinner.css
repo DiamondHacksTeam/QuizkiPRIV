@@ -22,6 +22,8 @@
   color: #2d4849;
 }
 
-.counter {
-  margin: 0;
+.spinnerContainer button:hover {
+  cursor: pointer;
+  background-color: #2d4849;
+    color: white;
 }

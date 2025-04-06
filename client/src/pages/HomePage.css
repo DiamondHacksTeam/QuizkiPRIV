@@ -1,0 +1,57 @@
+.home-page {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #2d4849;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.smiskis-preview,
+.flashcards-preview {
+  margin-bottom: 30px;
+}
+
+.smiskis-grid,
+.flashcards-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.smiski-item,
+.flashcard-item {
+  text-align: center;
+  border: 2px solid #2d4849;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #fbeac5;
+  width: 150px;
+}
+
+.smiski-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.flashcard-question {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #2d4849;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1e3333;
+}
