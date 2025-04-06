@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./ImageSpinner.css";
 
 function ImageSpinner() {
@@ -46,6 +47,7 @@ function ImageSpinner() {
   const [spinning, setSpinning] = useState(false);
   const [smiski, setSmiski] = useState(null);
   const [smiskiIndex, setSmiskiIndex] = useState(null);
+  const { isAuthenticated, user } = useAuth0();
 
   const resetState = () => {
     setCurrentImage(images[0]);
@@ -78,6 +80,26 @@ function ImageSpinner() {
     }
   }, [currentImage]);
 
+  const addSmiski = async (email, smiskiName) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5050/records/smiskis/${email}/${smiskiName}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const result = await response().json();
+    } catch (error) {
+      console.error("Error calling patch route: ", error);
+    }
+  };
+
   const cycleImage = () => {
     if (spinning) {
       return;
@@ -102,7 +124,12 @@ function ImageSpinner() {
         const finalImage = images[randomIndex];
         const series = smiskis[finalImage];
         const randomSmiskiIndex = Math.floor(Math.random() * series.length);
-        setSmiski(series[randomSmiskiIndex]);
+        const finalSmiski = series[randomSmiskiIndex];
+        setSmiski(finalSmiski);
+
+        if (isAuthenticated && user?.email) {
+          addSmiski(user.email, finalSmiski);
+        }
       }
     }, intervalTime);
 
