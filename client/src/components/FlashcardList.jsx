@@ -67,6 +67,7 @@ export default function FlashcardList() {
         <div className="flashcard-groups">
           {groups.map((group) => (
             <button
+
               key={group}
               onClick={() => handleGroupClick(group)}
               className="group-button"
