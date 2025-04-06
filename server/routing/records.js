@@ -59,10 +59,18 @@ router.patch("/smiskis/:user", async (req, res) => {
 
       const smiskiName = await smiskiCollection.aggregate([{ $sample: { size: 1 } }]).toArray();
       let smiskiInfo = await smiskiCollection.findOne({name: smiskiName[0].name});
+
+      let collection = await db.collection("users");
+
+      let exists = await collection.findOne({name: smiskiName[0].name});
+      if (exists){
+        let query1 = {$inc: {points : -75}};
+        
+      }
       let query1 = {$push: {collected : smiskiInfo}};
       let query2 = {$inc: {points : -100}};
 
-      let collection = await db.collection("users");
+      
       let result1 = await collection.updateOne({email: user}, query1);
       let result2 = await collection.updateOne({email: user}, query2);
       res.send(result1).status(204);
