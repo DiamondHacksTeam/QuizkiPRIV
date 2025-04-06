@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
+import Chatbot from "../components/Chatbot";
 import "./Study.css";
 
 export default function Study() {
@@ -14,7 +15,9 @@ export default function Study() {
   // Fetch terms from the backend
   async function fetchTerms() {
     try {
-      const response = await fetch(`http://localhost:5050/records/users/${user.email}`);
+      const response = await fetch(
+        `http://localhost:5050/records/users/${user.email}`
+      );
       const result = await response.json();
       const userTerms = result[0]?.terms || [];
 
@@ -88,13 +91,20 @@ export default function Study() {
 
   if (isLoading) return <div className="loading">Loading...</div>;
 
-  if (!user) return <div className="text">Please log in to view your study terms.</div>;
+  if (!user)
+    return <div className="text">Please log in to view your study terms.</div>;
 
   if (Object.keys(groupedTerms).length === 0) {
     return (
       <div className="no-groups">
-        <p>No terms available for study. Please add some flashcards to get started!</p>
-        <button onClick={() => navigate("/create")} className="edit-flashcards-button">
+        <p>
+          No terms available for study. Please add some flashcards to get
+          started!
+        </p>
+        <button
+          onClick={() => navigate("/create")}
+          className="edit-flashcards-button"
+        >
           Edit Flashcards
         </button>
       </div>
@@ -132,7 +142,9 @@ export default function Study() {
                   <input
                     type="text"
                     value={answers[term.id] || ""}
-                    onChange={(e) => handleAnswerChange(term.id, e.target.value)}
+                    onChange={(e) =>
+                      handleAnswerChange(term.id, e.target.value)
+                    }
                     placeholder="Your answer..."
                     className="answer-input"
                   />

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import LoginButton from "../components/LoginButton";
 import LogoutButton from "../components/LogoutButton";
 import "./profile.css";
+import Chatbot from "../components/Chatbot";
 
 async function getPoints(email) {
   let response = await fetch(`http://localhost:5050/records/users/${email}`);
@@ -56,7 +57,8 @@ export const Profile = () => {
           Smiskis Collected:{" "}
           {numCollected !== null ? numCollected : "Loading..."}
         </p>
-          <LogoutButton  additionalStyles="profile-button"/>
+        <LogoutButton additionalStyles="profile-button" />
+        <Chatbot />
       </div>
     );
   } else {
@@ -64,7 +66,8 @@ export const Profile = () => {
       <div className="profileInfo">
         <p></p>
         <p>You must be logged in to access the profile page.</p>
-          <LoginButton additionalStyles="profile-button"/>
+        <LoginButton additionalStyles="profile-button" />
+        <Chatbot />
       </div>
     );
   }
