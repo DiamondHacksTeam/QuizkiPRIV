@@ -91,11 +91,19 @@ body{
     cursor: pointer; /* Change the cursor to a pointer */
 }
 
+/* Styling for the create group container */
 .create-group-container {
     text-align: center;
     margin-top: 20px;
 }
 
+/* Add margin below the heading */
+.create-group-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px; /* Add margin below the heading */
+}
+
+/* Styling for the input field */
 .create-group-container input {
     padding: 10px;
     margin-bottom: 10px;

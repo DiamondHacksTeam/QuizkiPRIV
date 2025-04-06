@@ -53,7 +53,7 @@ function Flashcards() {
       {/* If there are no groups, display a button to navigate to the Edit Flashcards page */}
       {groups.length === 0 ? (
         <div className="no-groups">
-          <p>No groups available. Create a new group to get started!</p>
+          <p>No terms available for study. Please add some flashcards to get started!</p>
           <button onClick={() => navigate('/create')} className="edit-flashcards-button">
             Edit Flashcards
           </button>
