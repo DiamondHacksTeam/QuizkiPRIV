@@ -1,0 +1,117 @@
+body{
+    background-color: azure;
+}
+
+.card-grid{
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+/* Styling for the card container */
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: .25rem;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .3);
+    background-color: white;
+    height: 150px;
+    width: 300px;
+    cursor: pointer;
+    transition: 150ms;
+    transform: perspective(1000px) rotateY(var(--rotate-y, 0));
+}
+
+/* Add a shadow effect when hovering over the card */
+.card:hover {
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Flip the card when the 'flip' class is applied */
+.card.flip {
+    --rotate-y: 180deg;
+}
+
+/* Styling for the front and back of the card */
+.card .front,
+.card .back {
+    position: absolute;
+    padding: 1rem;
+    backface-visibility: hidden; /* Hide the back face when not flipped */
+}
+
+/* Rotate the back of the card */
+.card .back {
+    transform: rotateY(180deg);
+}
+
+/* Styling for the flashcard options container */
+.flashcard-options {
+    margin-top: 0.5rem;
+}
+
+/* Styling for individual flashcard options */
+.flashcard-option {
+    margin-top: 0.25rem;
+    color: #555;
+    font-size: 0.8rem;
+}
+
+/* Remove the top margin for the first flashcard option */
+.flashcard-option:first-child {
+    margin-top: 0;
+}
+
+/* Center the "choose" container */
+.choose-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Styling for the heading in the "choose" container */
+.choose-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Styling for the group list container */
+.group-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center; /* Center the group buttons */
+}
+
+/* Change the background color of group buttons on hover */
+.group-list button:hover {
+    background-color: #0056b3;
+    cursor: pointer; /* Change the cursor to a pointer */
+}
+
+.create-group-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.create-group-container input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.create-group-container button {
+    padding: 10px 20px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.create-group-container button:hover {
+    background-color: #5a6268;
+}

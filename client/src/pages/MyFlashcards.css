@@ -1,0 +1,69 @@
+/* Set the background color of the page */
+body {
+  background-color: azure;
+}
+
+/* Styling for the grid container of flashcards */
+.card-grid {
+  display: grid;
+  align-items: center; /* Center the cards vertically */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid layout */
+  gap: 1rem; /* Add spacing between cards */
+}
+
+/* Styling for individual flashcards */
+.card {
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  position: relative;
+  border-radius: 0.25rem; /* Rounded corners */
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3); /* Add a shadow effect */
+  background-color: white;
+  transform-style: preserve-3d; /* Enable 3D transformations */
+  height: 150px;
+  width: 300px;
+  cursor: pointer; /* Change the cursor to a pointer */
+  transition: 150ms; /* Smooth transition for transformations */
+  transform: perspective(1000px) rotateY(var(--rotate-y, 0)); /* Perspective effect */
+}
+
+/* Add a stronger shadow effect when hovering over the card */
+.card:hover {
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Flip the card when the 'flip' class is applied */
+.card.flip {
+  --rotate-y: 180deg;
+}
+
+/* Styling for the front and back of the card */
+.card .front,
+.card .back {
+  position: absolute;
+  padding: 1rem;
+  backface-visibility: hidden; /* Hide the back face when not flipped */
+}
+
+/* Rotate the back of the card */
+.card .back {
+  transform: rotateY(180deg);
+}
+
+/* Styling for the flashcard options container */
+.flashcard-options {
+  margin-top: 0.5rem;
+}
+
+/* Styling for individual flashcard options */
+.flashcard-option {
+  margin-top: 0.25rem;
+  color: #555;
+  font-size: 0.8rem;
+}
+
+/* Remove the top margin for the first flashcard option */
+.flashcard-option:first-child {
+  margin-top: 0;
+}
