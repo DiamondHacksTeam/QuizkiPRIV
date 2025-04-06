@@ -1,4 +1,4 @@
-# Mysterybox
+# Quizki
 
 A gamified, engaging study tool web application providing access to flashcard study tools, AI chatbot assistants, and test preparation tools all while offering Smiski Collection as an incentive to completing study activities. 
 
