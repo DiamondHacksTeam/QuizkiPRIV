@@ -5,7 +5,7 @@ import "./Home.css";
 
 export const Home = () => {
     return (
-        <div>
+        <div className="home-container">
             <div className="header-container">
                 <h1>Quizki</h1>
             </div>
