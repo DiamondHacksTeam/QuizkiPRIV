@@ -52,6 +52,22 @@ router.patch("/vocab/:user/:term/:ans/:group", async (req, res) => {
     res.status(500).send("Error adding record");
   }
 });
+router.patch("/vocab/:user/:group", async (req, res) => {
+    try{
+        let group = req.params.group;
+        let user = req.params.user;
+        let collection = await db.collection("users");
+
+        let result = await collection.updateOne(
+            {email: user},
+            {$push: {terms: {[group] : {}}}}
+        );
+        res.send(result).status(204);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error adding record");
+    }
+})
 //increments points
 router.patch("/balance/:user/:amnt", async (req, res) => {
   try {

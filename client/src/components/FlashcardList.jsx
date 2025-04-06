@@ -1,67 +1,91 @@
-import React, { useState } from 'react';
-import Flashcard, { SAMPLE_FLASHCARDS } from './Flashcarddata.jsx'; // Import the Flashcard component and sample data
-import './FlashCardList.css'
+import React, { useState, useEffect } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
+import Flashcard from './Flashcarddata.jsx';
 
-const FlashcardList = () => {
-  // State to track the selected group of flashcards
+export default function FlashcardList() {
   const [selectedGroup, setSelectedGroup] = useState(null);
-
-  // State to track the index of the currently displayed flashcard
+  const [SAMPLE_FLASHCARDS, setFlashcards] = useState([]);
   const [currentFlashcardIndex, setCurrentFlashcardIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const { user } = useAuth0();
 
-  // Extract unique groups from the flashcards dynamically
+  useEffect(() => {
+    const fetchFlashcards = async () => {
+      if (!user?.email) return;
+      
+      try {
+        const response = await fetch(`http://localhost:5050/records/users/${user.email}`);
+        const result = await response.json();
+        const terms = result[0]?.terms || [];
+        
+        const formatted = terms.flatMap(languageGroup => {
+          const [type, pairs] = Object.entries(languageGroup)[0];
+          return Object.entries(pairs).map(([q, a], i) => ({
+            id: `${type}-${i}`,
+            question: q,
+            answer: a,
+            group: type.charAt(0).toUpperCase() + type.slice(1)
+          }));
+        });
+        
+        setFlashcards(formatted);
+      } catch (error) {
+        console.error("Error fetching flashcards:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFlashcards();
+  }, [user?.email]);
+
   const groups = [...new Set(SAMPLE_FLASHCARDS.map((flashcard) => flashcard.group))];
+  const filteredFlashcards = selectedGroup 
+    ? SAMPLE_FLASHCARDS.filter((flashcard) => flashcard.group === selectedGroup)
+    : [];
 
-  // Filter flashcards by the selected group
-  const filteredFlashcards = SAMPLE_FLASHCARDS.filter(
-    (flashcard) => flashcard.group === selectedGroup
-  );
-
-  // Function to handle when a group is clicked
   const handleGroupClick = (group) => {
-    setSelectedGroup(group); // Set the selected group
-    setCurrentFlashcardIndex(0); // Reset to the first flashcard in the group
+    setSelectedGroup(group);
+    setCurrentFlashcardIndex(0);
   };
 
-  // Function to navigate to the next flashcard in the group
   const handleNextFlashcard = () => {
     setCurrentFlashcardIndex((prevIndex) => (prevIndex + 1) % filteredFlashcards.length);
   };
 
-  // Function to navigate to the previous flashcard in the group
   const handlePreviousFlashcard = () => {
     setCurrentFlashcardIndex((prevIndex) =>
       prevIndex === 0 ? filteredFlashcards.length - 1 : prevIndex - 1
     );
   };
 
+  if (loading) return <div>Loading flashcards...</div>;
+
   return (
     <div>
-      {/* If no group is selected, display the list of groups */}
       {!selectedGroup ? (
         <div className="flashcard-groups">
           {groups.map((group) => (
             <button
-              key={group} // Unique key for each group button
-              onClick={() => handleGroupClick(group)} // Set the selected group when clicked
+
+              key={group}
+              onClick={() => handleGroupClick(group)}
+              className="group-button"
             >
-              {group} {/* Display the group name */}
+              {group}
             </button>
           ))}
         </div>
       ) : filteredFlashcards.length > 0 ? (
         <div>
-          {/* Button to go back to the group selection */}
           <button onClick={() => setSelectedGroup(null)} className="back-button">
             Back to Groups
           </button>
 
-          {/* Display the current flashcard */}
           <div className="flashcard-container">
             <Flashcard flashcard={filteredFlashcards[currentFlashcardIndex]} />
           </div>
 
-          {/* Navigation buttons for previous and next flashcards */}
           <div className="navigation-buttons">
             <button onClick={handlePreviousFlashcard} className="prev-button">
               Previous
@@ -72,11 +96,8 @@ const FlashcardList = () => {
           </div>
         </div>
       ) : (
-        // Message displayed if no flashcards are available for the selected group
         <p>No flashcards available for this group.</p>
       )}
     </div>
   );
-};
-
-export default FlashcardList;
+}
