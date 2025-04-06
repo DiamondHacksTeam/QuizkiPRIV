@@ -14,3 +14,4 @@ Engaging study tool web application for DiamondHacks 2025
 2. `npm install` to install any dependencies
 3. `npm run dev` to run the frontend
 
+Created using MongoDB, ExpressJS, ReactJS, NodeJS, with OAuth used to handle user authentication, and Gemini API for our chatbot.
