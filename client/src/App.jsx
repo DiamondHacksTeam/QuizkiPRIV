@@ -2,12 +2,12 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import Study from "./pages/study";
-import { Collection } from "./pages/collection"; 
+import { Collection } from "./pages/collection";
 import { Gacha } from "./pages/gacha";
-import { Home } from "./pages/Home"; 
-import  Flashcards  from "./pages/MyFlashcards"; 
+import { Home } from "./pages/Home";
+import Flashcards from "./pages/MyFlashcards";
 import { Profile } from "./pages/Profile";
-import Create from "./pages/EditCards"; 
+import Create from "./pages/EditCards";
 
 function App() {
   return (
