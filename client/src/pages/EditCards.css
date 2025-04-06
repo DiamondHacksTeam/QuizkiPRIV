@@ -12,22 +12,22 @@ body{
 /* Styling for the card container */
 .card {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
     position: relative;
-    border-radius: .25rem;
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .3);
+    border-radius: 0.5rem; /* Slightly larger rounded corners */
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3); /* Add a shadow effect */
     background-color: white;
-    height: 150px;
-    width: 300px;
-    cursor: pointer;
-    transition: 150ms;
-    transform: perspective(1000px) rotateY(var(--rotate-y, 0));
+    height: 350px; /* Increase the height of the card */
+    width: 550px; /* Increase the width of the card */
+    cursor: pointer; /* Change the cursor to a pointer */
+    transition: 150ms; /* Smooth transition for transformations */
+    transform: perspective(1000px) rotateY(var(--rotate-y, 0)); /* Perspective effect */
 }
 
 /* Add a shadow effect when hovering over the card */
 .card:hover {
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
 }
 
 /* Flip the card when the 'flip' class is applied */
@@ -125,8 +125,8 @@ body{
     padding: 10px 20px;
     color: #2d4849;
     flex: column;
-    width: 160px;
-    height: 100px;
+    width: 30%;
+    height: 80%;
     margin: auto;
     margin-top: 10px;
     
@@ -136,4 +136,26 @@ body{
     cursor:pointer;
     background-color: #2d4849;
     color: white;
+}
+
+/* Ensure the parent container takes up the full height of the viewport */
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Make the container span the full height of the viewport */
+}
+
+/* Position the clear-all button at the bottom */
+.clear-all-button {
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.clear-all-button button:hover {
+    background-color: #cc0000;
+    cursor: pointer;
 }
