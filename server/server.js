@@ -1,11 +1,18 @@
 import express from "express";
 import cors from "cors";
 import { MongoClient, ServerApiVersion } from "mongodb";
+import records from "./routing/records.js";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const uri = process.env.ATLAS_URI || "";
+const PORT = process.env.PORT || 5050;
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use("/records", records);
 
 const client = new MongoClient(uri, {
   serverApi: {
@@ -15,26 +22,17 @@ const client = new MongoClient(uri, {
   },
 });
 
-const PORT = process.env.PORT || 5050;
-const app = express();
+await client.connect();
+let db = await client.db("QuizMe");
 
-app.use(cors());
-app.use(express.json());
-
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
-});
-
-try {
-  // Connect the client to the server
-  await client.connect();
-  // Send a ping to confirm a successful connection
+if (db) {
   await client.db("QuizMe").command({ ping: 1 });
-  console.log("Pinged your deployment. You successfully connected to MongoDB!");
-} catch (err) {
-  console.error(err);
+  console.log("Pinged your deployment. Successfully connected to MongoDB!");
+  app.listen(PORT, () => {
+    console.log(`Server listening on ${PORT}`);
+  });
+} else {
+  console.log("Failed to connect to database");
 }
-
-let db = client.db("QuizMe");
 
 export default db;
