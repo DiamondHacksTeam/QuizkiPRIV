@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect, useMemo } from "react";
 import "./Collection.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import Chatbot from "../components/Chatbot";
 
 async function getCollected(email) {
   let response = await fetch(`http://localhost:5050/records/users/${email}`);
@@ -295,6 +296,7 @@ export const Collection = () => {
           <p>Smiski Group Thinking</p>
         </div>
       </div>
+      <Chatbot />
     </div>
   );
 };
