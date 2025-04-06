@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { motion } from "framer-motion"; // Import Framer Motion
 import "./ImageSpinner.css";
 
 async function getPoints(email) {
@@ -101,7 +102,6 @@ function ImageSpinner() {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      const result = await response().json();
     } catch (error) {
       console.error("Error calling patch route: ", error);
     }
@@ -168,11 +168,24 @@ function ImageSpinner() {
       <button onClick={cycleImage} disabled={spinning}>
         {spinning ? "Spinning..." : "Spin"}
       </button>
-      <p>
-        {smiski === null || spinning
-          ? ""
-          : `Congrats! You got Smiski ${smiski} from the ${currentImage} series!`}
-      </p>
+      {smiski && !spinning && (
+        <motion.div
+          className="smiski-popup"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <img
+            src={`/${currentImage.toLowerCase()}_${smiski.toLowerCase().replace(/ /g, "_").replace(/[()]/g, "")}.png`}
+            alt={`Smiski ${smiski}`}
+            className="smiski-image"
+            onError={(e) => {
+              e.target.src = "/defaultSmiski.png"; // Fallback image
+            }}
+          />
+          <p>Congrats! You got Smiski {smiski.replace(/_/g, " ")} from the {currentImage} series!</p>
+        </motion.div>
+      )}
     </div>
   );
 }

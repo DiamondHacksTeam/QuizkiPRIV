@@ -27,3 +27,29 @@
   background-color: #2d4849;
     color: white;
 }
+
+.smiski-popup {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #fbeac5;
+  color: #2d4849;
+  border: 2px solid #2d4849;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.smiski-image {
+  width: 150px;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+<img
+  src={`/${currentImage.toLowerCase()}_${smiski.toLowerCase().replace(/ /g, "_")}.png`}
+  alt={`Smiski ${smiski}`}
+  className="smiski-image"
+/>
