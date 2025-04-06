@@ -113,7 +113,7 @@ function ImageSpinner() {
       <p>
         {spinning
           ? ""
-          : `Congrats! You got ${smiski} from the ${currentImage} series!`}
+          : `Congrats! You got Smiski ${smiski} from the ${currentImage} series!`}
       </p>
     </div>
   );
