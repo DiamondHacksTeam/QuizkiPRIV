@@ -14,7 +14,8 @@ router.get("/:desired", async (req, res) => {
 router.get("/users/:name", async (req, res) => {
     let collection = await db.collection("users");
     let name = req.params.name;
-    let results = await collection.find({name: `${name}`}).toArray();
+    let results = await collection.find({email: `${name}`}).toArray();
+    console.log(results[0].points);
     res.send(results).status(200);
 })
 
@@ -65,7 +66,7 @@ router.patch("/smiskis/:user", async (req, res) => {
       let exists = await collection.findOne({name: smiskiName[0].name});
       if (exists){
         let query1 = {$inc: {points : -75}};
-        
+
       }
       let query1 = {$push: {collected : smiskiInfo}};
       let query2 = {$inc: {points : -100}};
