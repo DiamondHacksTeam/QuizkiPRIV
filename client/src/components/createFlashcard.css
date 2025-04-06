@@ -1,0 +1,75 @@
+/* Main container for the flashcard creation form */
+.create-flashcard {
+    background-color: #bcdad3;  /* Light teal background */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 500px;
+    margin: 40px auto;
+    font-family: 'Arial', sans-serif;
+    border: 1px solid #2d4849
+  }
+  
+  /* Title style */
+  .create-flashcard h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Form field container */
+  .create-flashcard form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Style for the form labels */
+  .create-flashcard label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+  }
+  
+  /* Style for the form input fields */
+  .create-flashcard input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+  }
+  
+  /* On focus, change the border color of the input fields */
+  .create-flashcard input:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+  
+  /* Style for the submit button */
+  .create-flashcard button {
+    background-color: #fbeac5;  /* Soft yellowish button color */
+    color: #333;  /* Dark text for contrast */
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  /* Button hover effect */
+  .create-flashcard button:hover {
+    background-color: #f7d79f;  /* Slightly darker yellow when hovering */
+  }
+  
+  /* Alert style for empty fields */
+  .create-flashcard .alert {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+  }
+  

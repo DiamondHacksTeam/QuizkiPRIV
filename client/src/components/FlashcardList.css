@@ -24,3 +24,68 @@
     background-color: #2d4849;
     color: white;
 }
+
+/* Center the navigation buttons and make them full width */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between; /* Spread buttons across the full width */
+    align-items: center; /* Center vertically */
+    gap: 10px; /* Add spacing between buttons */
+    margin-top: 3px; /* Add some space above the buttons */
+    width: 100%; /* Make the navigation bar span the full width */
+    padding: 10px; /* Add padding for better spacing */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+/* Style for individual buttons */
+.navigation-buttons button {
+    flex: 1; /* Make buttons take equal space */
+    max-width: 150px; /* Optional: Limit the button width */
+    border: 2px solid #2d4849;
+    border-radius: 10px;
+    background-color: #fbeac5;
+    font-size: 1rem;
+    padding: 8px 16px;
+    color: #2d4849;
+    cursor: pointer;
+    text-align: center; /* Center the text inside the button */
+}
+
+.navigation-buttons button:hover {
+    background-color: #2d4849;
+    color: white;
+}
+
+/* Style for the "Back to Groups" button container */
+.back-to-groups {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    margin-bottom: 20px; /* Add space below the button */
+    margin-top: 20px; /* Add space above the button */
+}
+.back{
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    gap: 10px; /* Add spacing between buttons */
+    margin-top: 10px; /* Add some space above the buttons */
+    margin-bottom: 10px;
+}
+/* Style for the "Back to Groups" button */
+.back button {
+    display: inline-block;
+    border: 2px solid #2d4849;
+    border-radius: 10px;
+    background-color: #fbeac5;
+    font-size: 1rem;
+    padding: 8px 16px;
+    color: #2d4849;
+    cursor: pointer;
+    
+}
+
+.back button:hover {
+    background-color: #2d4849;
+    color: white;
+    cursor:pointer;
+}

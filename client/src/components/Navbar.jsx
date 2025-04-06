@@ -14,7 +14,7 @@ export const Navbar = () => {
             to="/study"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            Study
+            Test
           </NavLink>
         </li>
         <li>

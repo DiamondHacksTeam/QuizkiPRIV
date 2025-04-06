@@ -117,6 +117,29 @@ export default function Create() {
     }
   };
 
+  // Function to clear all groups and flashcards
+  const clearAll = async () => {
+    if (!user?.email) return;
+
+    const confirmClear = window.confirm("Are you sure you want to clear all groups and flashcards?");
+    if (!confirmClear) return;
+
+    try {
+      const response = await fetch(`http://localhost:5050/records/${user.email}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) throw new Error('Failed to clear all groups and flashcards');
+
+      setFlashcards([]);
+      setGroups([]);
+      alert("All groups and flashcards have been cleared.");
+    } catch (error) {
+      console.error("Error clearing all groups and flashcards:", error);
+      alert("Failed to clear all groups and flashcards.");
+    }
+  };
+
   return (
     <div className="app">
       {/* Choose page: Decide to create a group or add to an existing group */}
@@ -143,6 +166,12 @@ export default function Create() {
               </div>
             </>
           )}
+          {/* Clear All Button */}
+          <div className="clear-all-button">
+          <button className="clear-all-button" onClick={clearAll}>
+            Clear All
+          </button>
+          </div>
         </div>
       )}
 
@@ -153,9 +182,16 @@ export default function Create() {
           <input
             type="text"
             placeholder="Enter group name"
-            onKeyDown={(e) => {
+            onKeyDown={async (e) => {
               if (e.key === 'Enter' && e.target.value.trim() !== '') {
-                createGroup(e.target.value.trim());
+                const groupName = e.target.value.trim();
+                try {
+                  await createGroup(groupName); // Create the group
+                  alert("New group created!"); // Show success message
+                  setCurrentPage('choose'); // Navigate back to the "choose" page
+                } catch (error) {
+                  alert("Failed to create group. Please try again."); // Handle errors
+                }
               }
             }}
           />
