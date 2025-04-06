@@ -46,7 +46,7 @@ export const Profile = () => {
   if (isAuthenticated) {
     return (
       <div className="profileInfo">
-        <p>Welcome, {user.email}</p>
+        <h1>Welcome, {user.email}!</h1>
         <img
           src="../../public/defaultSmiski.png"
           className="profilePicture"
@@ -56,14 +56,15 @@ export const Profile = () => {
           Smiskis Collected:{" "}
           {numCollected !== null ? numCollected : "Loading..."}
         </p>
-        <LogoutButton />
+          <LogoutButton  additionalStyles="profile-button"/>
       </div>
     );
   } else {
     return (
-      <div>
+      <div className="profileInfo">
+        <p></p>
         <p>You must be logged in to access the profile page.</p>
-        <LoginButton />
+          <LoginButton additionalStyles="profile-button"/>
       </div>
     );
   }
