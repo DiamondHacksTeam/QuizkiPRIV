@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom'; // Hook for navigation between p
 import FlashcardList from '../components/FlashcardList.jsx'; // Component to display flashcards
 import CreateFlashcard from '../components/CreateFlashcard.jsx'; // Component to create a flashcard
 import './EditCards.css'; // CSS for styling the Create page
-import { SAMPLE_FLASHCARD } from '../components/Flashcarddata.jsx';
 
 export default function Create() {
 
-  const [SAMPLE_FLASHCARDS, setSample] = useState([]);
+  const [SAMPLE_FLASHCARDS, setFlashcards] = useState([]);
 
+  const [groups, setGroups] = useState([]);
   const { user } = useAuth0();
 
   useEffect(() => {
@@ -20,6 +20,7 @@ export default function Create() {
         const response = await fetch(`http://localhost:5050/records/users/${user.email}`);
         const result = await response.json();
         const terms = result[0]?.terms || [];
+        const groups = [];
         
         const formatted = terms.flatMap(languageGroup => {
           const [type, pairs] = Object.entries(languageGroup)[0];
@@ -30,8 +31,16 @@ export default function Create() {
             group: type.charAt(0).toUpperCase() + type.slice(1)
           }));
         });
+
+        terms.forEach(languageGroup => {
+
+          const [group, translations] = Object.entries(languageGroup)[0];
+          groups.push(group);
+          
+        });
         
         setFlashcards(formatted);
+        setGroups(groups);
       } catch (error) {
         console.error("Error fetching flashcards:", error);
       }
@@ -40,39 +49,94 @@ export default function Create() {
     fetchFlashcards();
   }, [user?.email]);
 
-  // State to hold the flashcards
-  const [flashcards, setFlashcards] = useState(SAMPLE_FLASHCARDS);
-
   // State to track the current page ('choose', 'create-group', 'create', or 'list')
   const [currentPage, setCurrentPage] = useState('choose');
 
   // State to track the selected group
   const [selectedGroup, setSelectedGroup] = useState(null);
 
-  // Extract unique groups from the sample flashcards
-  const [groups, setGroups] = useState([...new Set(SAMPLE_FLASHCARDS.map((f) => f.group))]);
-
   // Hook to navigate between routes
   const navigate = useNavigate();
 
   // Function to add a new flashcard to the selected group
-  const addFlashcard = (question, answer) => {
-    const newFlashcard = {
-      id: flashcards.length + 1,
-      question,
-      answer,
-      group: selectedGroup,
-    };
-    setFlashcards([...flashcards, newFlashcard]);
-    setCurrentPage('list'); // Navigate to the list page after adding
+  const addFlashcard = async (question, answer) => {
+    try {
+
+      const response = await fetch(
+        `http://localhost:5050/records/vocab/${user.email}/${question}/${answer}/${selectedGroup}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ question, answer })
+        }
+      );
+
+      if (!response.ok) throw new Error('Failed to add flashcard');
+
+      const newFlashcard = {
+        id: Date.now(),
+        question,
+        answer,
+        group: selectedGroup,
+      };
+      
+      setFlashcards(prev => [...prev, newFlashcard]);
+      return true;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
   };
 
   // Function to create a new group
-  const createGroup = (groupName) => {
-    if (!groups.includes(groupName)) {
+  const createGroup = async (groupName) => {
+    if (!groupName.trim()) {
+      alert("Group name cannot be empty");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:5050/records/vocab/${user.email}/${groupName}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }
+      );
+
+      if (!response.ok) throw new Error('Failed to create group');
       setGroups([...groups, groupName]);
-      setSelectedGroup(groupName);
-      setCurrentPage('create'); // Navigate to the create flashcard page
+      return groupName; // Return the created group name
+    } catch (error) {
+      console.error("Error creating group:", error);
+      throw error; // Re-throw for error handling in components
+    }
+  };
+
+  // Function to clear all groups and flashcards
+  const clearAll = async () => {
+    if (!user?.email) return;
+
+    const confirmClear = window.confirm("Are you sure you want to clear all groups and flashcards?");
+    if (!confirmClear) return;
+
+    try {
+      const response = await fetch(`http://localhost:5050/records/clear/${user.email}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) throw new Error('Failed to clear all groups and flashcards');
+
+      setFlashcards([]);
+      setGroups([]);
+      alert("All groups and flashcards have been cleared.");
+    } catch (error) {
+      console.error("Error clearing all groups and flashcards:", error);
+      alert("Failed to clear all groups and flashcards.");
     }
   };
 
@@ -80,14 +144,14 @@ export default function Create() {
     <div className="app">
       {/* Choose page: Decide to create a group or add to an existing group */}
       {currentPage === 'choose' && (
-        <div className="choose-container">
+        <div className="choose-container view-flashcards-button">
           <h2>What would you like to do?</h2>
           <button onClick={() => setCurrentPage('create-group')}>Create a New Group</button>
           {/* Conditionally render the text and group list only if there are groups */}
           {groups.length > 0 && (
             <>
               <h3>Or choose an existing group:</h3>
-              <div className="group-list">
+              <div className="group-list view-flashcards-button">
                 {groups.map((group) => (
                   <button
                     key={group}
@@ -102,6 +166,12 @@ export default function Create() {
               </div>
             </>
           )}
+          {/* Clear All Button */}
+          <div className="clear-all-button">
+          <button className="clear-all-button" onClick={clearAll}>
+            Clear All
+          </button>
+          </div>
         </div>
       )}
 
@@ -128,7 +198,7 @@ export default function Create() {
       )}
 
       {/* Flashcard list page */}
-      {currentPage === 'list' && <FlashcardList flashcards={flashcards} />}
+      {currentPage === 'list' && <FlashcardList flashcards={SAMPLE_FLASHCARDS} />}
 
       {/* Button to navigate to the Flashcards page */}
       <div className="view-flashcards-button">

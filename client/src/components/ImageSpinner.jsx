@@ -3,6 +3,12 @@ import { useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./ImageSpinner.css";
 
+async function getPoints(email) {
+  let response = await fetch(`http://localhost:5050/records/users/${email}`);
+  const result = await response.json();
+  return result[0].points;
+}
+
 function ImageSpinner() {
   const location = useLocation();
   const images = ["Bath", "Sunday", "Toilet", "Work"];
@@ -10,23 +16,23 @@ function ImageSpinner() {
   const smiskis = {
     Bath: [
       "Shampoo",
-      "Not Looking",
+      "Not_Looking",
       "Scrubbing",
-      "With Duck",
+      "With_Duck",
       "Dazed",
       "Looking",
     ],
     Toilet: [
       "Peek-A-Boo",
-      "Little (Smelly)",
+      "Little_(Smelly)",
       "Squatting",
-      "Helping Out",
+      "Helping_Out",
       "Resting",
-      "Holding In",
+      "Holding_In",
     ],
     Sunday: [
-      "Blowing Bubbles",
-      "Paper Airplane",
+      "Blowing_Bubbles",
+      "Paper_Airplane",
       "Sunbathing",
       "Sing-Along",
       "Skateboarding",
@@ -36,17 +42,18 @@ function ImageSpinner() {
       "Approving",
       "Researching",
       "Presenting",
-      "Good Idea",
-      "On the Rord",
-      "Group Think",
+      "Good_Idea",
+      "On_the_Rord",
+      "Group_Think",
     ],
-    "Wrong Universe!": ["Troll"],
+    Exercising: ["Crunches", "Stretching", "Dumbbell", "Balance", "Aerobics"],
   };
 
   const [currentImage, setCurrentImage] = useState(images[0]);
   const [spinning, setSpinning] = useState(false);
   const [smiski, setSmiski] = useState(null);
   const [smiskiIndex, setSmiskiIndex] = useState(null);
+  const [points, setPoints] = useState(0);
   const { isAuthenticated, user } = useAuth0();
 
   const resetState = () => {
@@ -100,8 +107,24 @@ function ImageSpinner() {
     }
   };
 
+  useEffect(() => {
+    if (isAuthenticated && user?.email) {
+      getPoints(user.email).then(
+        (fetchedPoints) => {
+          setPoints(fetchedPoints);
+        },
+        [isAuthenticated, user]
+      );
+    }
+  });
+
   const cycleImage = () => {
     if (spinning) {
+      return;
+    }
+
+    if (points < 100) {
+      alert("You need at least 100 points to open a new blind box.");
       return;
     }
 
@@ -138,6 +161,9 @@ function ImageSpinner() {
 
   return (
     <div className="spinnerContainer">
+      <p className="counter">
+        Your Points: {points !== null ? points : "Loading..."}
+      </p>
       <img src={`../../public/${currentImage}.png`} className="smiskiBox"></img>
       <button onClick={cycleImage} disabled={spinning}>
         {spinning ? "Spinning..." : "Spin"}

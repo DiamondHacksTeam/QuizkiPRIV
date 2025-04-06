@@ -2,10 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0;
 }
 
 .gachaContainer h1 {
   font-size: 2.5rem; /* Adjust the size of the header */
   color: #2d4849; /* Color of the header */
-  margin: 20px 0; /* Adds space above and below the header */
+  margin: 20px 0;
+  margin-bottom: 0; /* Adds space above and below the header */
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import Flashcard from './Flashcarddata.jsx';
+import './FlashCardList.css'
 
 export default function FlashcardList() {
   const [selectedGroup, setSelectedGroup] = useState(null);
@@ -78,9 +79,11 @@ export default function FlashcardList() {
         </div>
       ) : filteredFlashcards.length > 0 ? (
         <div>
-          <button onClick={() => setSelectedGroup(null)} className="back-button">
-            Back to Groups
-          </button>
+          <div className="back">
+            <button onClick={() => setSelectedGroup(null)} className="back-button">
+              Back to Groups
+            </button>
+          </div>
 
           <div className="flashcard-container">
             <Flashcard flashcard={filteredFlashcards[currentFlashcardIndex]} />
