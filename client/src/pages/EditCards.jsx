@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom'; // Hook for navigation between p
 import FlashcardList from '../components/FlashcardList.jsx'; // Component to display flashcards
 import CreateFlashcard from '../components/CreateFlashcard.jsx'; // Component to create a flashcard
 import './EditCards.css'; // CSS for styling the Create page
-import { SAMPLE_FLASHCARD } from '../components/Flashcarddata.jsx';
 
 export default function Create() {
 
-  const [SAMPLE_FLASHCARDS, setSample] = useState([]);
+  const [SAMPLE_FLASHCARDS, setFlashcards] = useState([]);
 
+  const [groups, setGroups] = useState([]);
   const { user } = useAuth0();
 
   useEffect(() => {
@@ -20,6 +20,7 @@ export default function Create() {
         const response = await fetch(`http://localhost:5050/records/users/${user.email}`);
         const result = await response.json();
         const terms = result[0]?.terms || [];
+        const groups = [];
         
         const formatted = terms.flatMap(languageGroup => {
           const [type, pairs] = Object.entries(languageGroup)[0];
@@ -30,8 +31,16 @@ export default function Create() {
             group: type.charAt(0).toUpperCase() + type.slice(1)
           }));
         });
+
+        terms.forEach(languageGroup => {
+
+          const [group, translations] = Object.entries(languageGroup)[0];
+          groups.push(group);
+          
+        });
         
         setFlashcards(formatted);
+        setGroups(groups);
       } catch (error) {
         console.error("Error fetching flashcards:", error);
       }
@@ -40,17 +49,11 @@ export default function Create() {
     fetchFlashcards();
   }, [user?.email]);
 
-  // State to hold the flashcards
-  const [flashcards, setFlashcards] = useState(SAMPLE_FLASHCARDS);
-
   // State to track the current page ('choose', 'create-group', 'create', or 'list')
   const [currentPage, setCurrentPage] = useState('choose');
 
   // State to track the selected group
   const [selectedGroup, setSelectedGroup] = useState(null);
-
-  // Extract unique groups from the sample flashcards
-  const [groups, setGroups] = useState([...new Set(SAMPLE_FLASHCARDS.map((f) => f.group))]);
 
   // Hook to navigate between routes
   const navigate = useNavigate();
@@ -63,7 +66,7 @@ export default function Create() {
       answer,
       group: selectedGroup,
     };
-    setFlashcards([...flashcards, newFlashcard]);
+    setFlashcards([...SAMPLE_FLASHCARDS, newFlashcard]);
     setCurrentPage('list'); // Navigate to the list page after adding
   };
 
@@ -85,7 +88,7 @@ export default function Create() {
           <button onClick={() => setCurrentPage('create-group')}>Create a New Group</button>
           <h3>Or choose an existing group:</h3>
           <div className="group-list">
-            {groups.map((group) => (
+            {groups.map((group) => ( //this is the groups button
               <button
                 key={group}
                 onClick={() => {
