@@ -10,6 +10,7 @@ nav {
   margin: 0;
   padding: 0;
   border-bottom: 4px solid #2d4849;
+  z-index: 1;
 }
 
 nav .title {
