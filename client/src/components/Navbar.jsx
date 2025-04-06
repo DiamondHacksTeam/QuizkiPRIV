@@ -1,35 +1,61 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { CgProfile } from "react-icons/cg";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 export const Navbar = () => {
   return (
     <nav>
-      <Link to="/" className="title">
-        Website Name TBD
-      </Link>
+      <NavLink to="/" className="title">
+        Quizki
+      </NavLink>
       <ul>
         <li>
-          <Link to="/study">Study</Link>
+          <NavLink
+            to="/study"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Study
+          </NavLink>
         </li>
         <li>
-          <Link to="/flashcards">My Flashcards</Link>
+          <NavLink
+            to="/flashcards"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            My Flashcards
+          </NavLink>
         </li>
         <li>
-          <Link to="/create">Create Flashcards</Link>
-        </li>
-
-        <li>
-          <Link to="/collection">Collection</Link>
-        </li>
-        <li>
-          <Link to="/gacha">Gacha</Link>
+          <NavLink
+            to="/create"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Create Flashcards
+          </NavLink>
         </li>
         <li>
-          <Link to="/profile">
-            <CgProfile className="profileIcon" />
-          </Link>
+          <NavLink
+            to="/collection"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Collection
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/gacha"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Gacha
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/profile"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Profile
+          </NavLink>
         </li>
       </ul>
     </nav>
