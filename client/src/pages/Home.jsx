@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
+import FlashcardList from "../components/FlashcardList.jsx"; // Component to display a list of flashcards
+import CreateFlashcard from "../components/CreateFlashcard.jsx"; // Component to create a new flashcard
 import "./Home.css";
 
+
 export const Home = () => {
+  
   return (
     <div>
       <div className="header-container">
@@ -50,6 +54,12 @@ export const Home = () => {
           <FaRegArrowAltCircleRight />
         </Link>
       </div>
+
+      <div className="flashcard-preview">
+        <FlashcardList />
+      </div>
+
     </div>
   );
 };
+
