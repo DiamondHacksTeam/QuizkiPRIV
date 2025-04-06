@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./ImageSpinner.css";
 
 function ImageSpinner() {
+  const location = useLocation();
   const images = ["Bath", "Sunday", "Toilet", "Work"];
   const intervals = [3000, 4000, 5000, 6000];
-
   const smiskis = {
     Bath: [
       "Shampoo",
@@ -44,14 +46,18 @@ function ImageSpinner() {
   const [currentImage, setCurrentImage] = useState(images[0]);
   const [spinning, setSpinning] = useState(false);
   const [smiski, setSmiski] = useState(null);
-  const [hasSpun, setHasSpun] = useState(false);
+  const [smiskiIndex, setSmiskiIndex] = useState(null);
+  const { isAuthenticated, user } = useAuth0();
 
   const resetState = () => {
     setCurrentImage(images[0]);
     setSpinning(false);
     setSmiski(null);
-    setHasSpun(false);
   };
+
+  useEffect(() => {
+    resetState();
+  }, [location.pathname]);
 
   useEffect(() => {
     function handlePageShow(event) {
@@ -70,15 +76,29 @@ function ImageSpinner() {
   useEffect(() => {
     if (currentImage) {
       const series = smiskis[currentImage];
-      setSmiski(series[Math.floor(Math.random() * series.length)]);
+      setSmiskiIndex(Math.floor(Math.random() * series.length));
     }
   }, [currentImage]);
 
-  useEffect(() => {
-    if (!spinning && currentImage) {
-      setHasSpun(true);
+  const addSmiski = async (email, smiskiName) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5050/records/smiskis/${email}/${smiskiName}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const result = await response().json();
+    } catch (error) {
+      console.error("Error calling patch route: ", error);
     }
-  }, [spinning, currentImage]);
+  };
 
   const cycleImage = () => {
     if (spinning) {
@@ -100,8 +120,20 @@ function ImageSpinner() {
       if (elapsed >= duration) {
         clearInterval(interval);
         setSpinning(false);
+
+        const finalImage = images[randomIndex];
+        const series = smiskis[finalImage];
+        const randomSmiskiIndex = Math.floor(Math.random() * series.length);
+        const finalSmiski = series[randomSmiskiIndex];
+        setSmiski(finalSmiski);
+
+        if (isAuthenticated && user?.email) {
+          addSmiski(user.email, finalSmiski);
+        }
       }
     }, intervalTime);
+
+    setSmiski(smiskis[smiskiIndex]);
   };
 
   return (
@@ -111,7 +143,7 @@ function ImageSpinner() {
         {spinning ? "Spinning..." : "Spin"}
       </button>
       <p>
-        {spinning
+        {smiski === null || spinning
           ? ""
           : `Congrats! You got Smiski ${smiski} from the ${currentImage} series!`}
       </p>
