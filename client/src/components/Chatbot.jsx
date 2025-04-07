@@ -48,7 +48,6 @@ const Chatbot = () => {
         contents: formattedHistory,
         generationConfig: {
           temperature: 0.7,
-          maxOutputTokens: 50,
         },
       }),
     };
