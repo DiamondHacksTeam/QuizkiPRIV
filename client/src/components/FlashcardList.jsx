@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import Flashcard from './Flashcarddata.jsx';
-import './FlashCardList.css'
+import Flashcard from "./Flashcarddata.jsx";
+import "./FlashCardList.css";
 
 export default function FlashcardList() {
   const [selectedGroup, setSelectedGroup] = useState(null);
@@ -13,22 +13,24 @@ export default function FlashcardList() {
   useEffect(() => {
     const fetchFlashcards = async () => {
       if (!user?.email) return;
-      
+
       try {
-        const response = await fetch(`http://localhost:5050/records/users/${user.email}`);
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/records/users/${user.email}`
+        );
         const result = await response.json();
         const terms = result[0]?.terms || [];
-        
-        const formatted = terms.flatMap(languageGroup => {
+
+        const formatted = terms.flatMap((languageGroup) => {
           const [type, pairs] = Object.entries(languageGroup)[0];
           return Object.entries(pairs).map(([q, a], i) => ({
             id: `${type}-${i}`,
             question: q,
             answer: a,
-            group: type.charAt(0).toUpperCase() + type.slice(1)
+            group: type.charAt(0).toUpperCase() + type.slice(1),
           }));
         });
-        
+
         setFlashcards(formatted);
       } catch (error) {
         console.error("Error fetching flashcards:", error);
@@ -40,8 +42,10 @@ export default function FlashcardList() {
     fetchFlashcards();
   }, [user?.email]);
 
-  const groups = [...new Set(SAMPLE_FLASHCARDS.map((flashcard) => flashcard.group))];
-  const filteredFlashcards = selectedGroup 
+  const groups = [
+    ...new Set(SAMPLE_FLASHCARDS.map((flashcard) => flashcard.group)),
+  ];
+  const filteredFlashcards = selectedGroup
     ? SAMPLE_FLASHCARDS.filter((flashcard) => flashcard.group === selectedGroup)
     : [];
 
@@ -51,7 +55,9 @@ export default function FlashcardList() {
   };
 
   const handleNextFlashcard = () => {
-    setCurrentFlashcardIndex((prevIndex) => (prevIndex + 1) % filteredFlashcards.length);
+    setCurrentFlashcardIndex(
+      (prevIndex) => (prevIndex + 1) % filteredFlashcards.length
+    );
   };
 
   const handlePreviousFlashcard = () => {
@@ -68,7 +74,6 @@ export default function FlashcardList() {
         <div className="flashcard-groups">
           {groups.map((group) => (
             <button
-
               key={group}
               onClick={() => handleGroupClick(group)}
               className="group-button"
@@ -80,7 +85,10 @@ export default function FlashcardList() {
       ) : filteredFlashcards.length > 0 ? (
         <div>
           <div className="back">
-            <button onClick={() => setSelectedGroup(null)} className="back-button">
+            <button
+              onClick={() => setSelectedGroup(null)}
+              className="back-button"
+            >
               Back to Groups
             </button>
           </div>

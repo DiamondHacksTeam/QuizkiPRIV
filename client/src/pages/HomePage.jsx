@@ -19,13 +19,13 @@ function HomePage() {
       try {
         // Fetch unlocked Smiskis
         const smiskisResponse = await fetch(
-          `http://localhost:5050/records/smiskis/${user.email}`
+          `${process.env.REACT_APP_API_URL}/records/smiskis/${user.email}`
         );
         const smiskisData = await smiskisResponse.json();
 
         // Fetch flashcards
         const flashcardsResponse = await fetch(
-          `http://localhost:5050/records/users/${user.email}`
+          `${process.env.REACT_APP_API_URL}/records/users/${user.email}`
         );
         const flashcardsData = await flashcardsResponse.json();
         const terms = flashcardsData[0]?.terms || [];
@@ -93,7 +93,9 @@ function HomePage() {
             <p>No flashcards available.</p>
           )}
         </div>
-        <button onClick={() => navigate("/flashcards")}>View All Flashcards</button>
+        <button onClick={() => navigate("/flashcards")}>
+          View All Flashcards
+        </button>
       </section>
     </div>
   );

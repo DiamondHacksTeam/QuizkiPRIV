@@ -16,7 +16,7 @@ export default function Study() {
   async function fetchTerms() {
     try {
       const response = await fetch(
-        `http://localhost:5050/records/users/${user.email}`
+        `${process.env.REACT_APP_API_URL}/records/users/${user.email}`
       );
       const result = await response.json();
       const userTerms = result[0]?.terms || [];

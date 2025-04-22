@@ -5,7 +5,9 @@ import { motion } from "framer-motion"; // Import Framer Motion
 import "./ImageSpinner.css";
 
 async function getPoints(email) {
-  let response = await fetch(`http://localhost:5050/records/users/${email}`);
+  let response = await fetch(
+    `${process.env.REACT_APP_API_URL}/records/users/${email}`
+  );
   const result = await response.json();
   return result[0].points;
 }
@@ -91,7 +93,7 @@ function ImageSpinner() {
   const addSmiski = async (email, smiskiName) => {
     try {
       const response = await fetch(
-        `http://localhost:5050/records/smiskis/${email}/${smiskiName}`,
+        `${process.env.REACT_APP_API_URL}/records/smiskis/${email}/${smiskiName}`,
         {
           method: "PATCH",
           headers: {
@@ -176,14 +178,20 @@ function ImageSpinner() {
           transition={{ duration: 0.5 }}
         >
           <img
-            src={`/${currentImage.toLowerCase()}_${smiski.toLowerCase().replace(/ /g, "_").replace(/[()]/g, "")}.png`}
+            src={`/${currentImage.toLowerCase()}_${smiski
+              .toLowerCase()
+              .replace(/ /g, "_")
+              .replace(/[()]/g, "")}.png`}
             alt={`Smiski ${smiski}`}
             className="smiski-image"
             onError={(e) => {
               e.target.src = "/defaultSmiski.png"; // Fallback image
             }}
           />
-          <p>Congrats! You got Smiski {smiski.replace(/_/g, " ")} from the {currentImage} series!</p>
+          <p>
+            Congrats! You got Smiski {smiski.replace(/_/g, " ")} from the{" "}
+            {currentImage} series!
+          </p>
         </motion.div>
       )}
     </div>

@@ -5,7 +5,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Chatbot from "../components/Chatbot";
 
 async function getCollected(email) {
-  let response = await fetch(`http://localhost:5050/records/users/${email}`);
+  let response = await fetch(
+    `${process.env.REACT_APP_API_URL}/records/users/${email}`
+  );
   const result = await response.json();
   return result[0].collected;
 }

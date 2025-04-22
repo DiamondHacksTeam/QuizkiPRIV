@@ -25,7 +25,7 @@
 .spinnerContainer button:hover {
   cursor: pointer;
   background-color: #2d4849;
-    color: white;
+  color: white;
 }
 
 .smiski-popup {
@@ -47,9 +47,3 @@
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
-
-<img
-  src={`/${currentImage.toLowerCase()}_${smiski.toLowerCase().replace(/ /g, "_")}.png`}
-  alt={`Smiski ${smiski}`}
-  className="smiski-image"
-/>

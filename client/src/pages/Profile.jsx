@@ -6,13 +6,15 @@ import "./profile.css";
 import Chatbot from "../components/Chatbot";
 
 async function getPoints(email) {
-  let response = await fetch(`http://localhost:5050/records/users/${email}`);
+  let response = await fetch(
+    `${process.env.REACT_APP_API_URL}/records/users/${email}`
+  );
   const result = await response.json();
   return result[0].points;
 }
 
 async function getNumCollected(email) {
-  let response = await fetch(`http://localhost:5050/records/users/${email}`);
+  let response = await fetch(`${process.env.REACT_APP_API_URL}/users/${email}`);
   const result = await response.json();
   return result[0].collected.length;
 }
