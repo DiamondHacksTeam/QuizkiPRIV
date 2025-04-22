@@ -8,7 +8,6 @@ import { Home } from "./pages/Home";
 import Flashcards from "./pages/MyFlashcards";
 import { Profile } from "./pages/Profile";
 import Create from "./pages/EditCards";
-import Chatbot from "./components/Chatbot";
 
 function App() {
   return (
