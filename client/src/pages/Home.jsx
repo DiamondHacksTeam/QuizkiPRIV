@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
-import FlashcardList from "../components/FlashcardList.jsx"; // Component to display a list of flashcards
-import CreateFlashcard from "../components/CreateFlashcard.jsx"; // Component to create a new flashcard
+import FlashcardList from "../components/FlashcardList.jsx"; // Component to display a list of flashcardsent to create a new flashcard
 import Chatbot from "../components/Chatbot.jsx";
 import "./Home.css";
 
