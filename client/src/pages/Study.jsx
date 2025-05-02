@@ -72,7 +72,7 @@ export default function Study() {
 
     if (score === 100) {
       // Award points for a perfect score
-      fetch(`http://localhost:5050/records/balance/${user.email}/10`, {
+      fetch(`${process.env.REACT_APP_API_URL}/records/balance/${user.email}/10`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

@@ -18,7 +18,7 @@ export default function Create() {
 
       try {
         const response = await fetch(
-          `http://localhost:5050/records/users/${user.email}`
+          `${process.env.REACT_APP_API_URL}/records/users/${user.email}`
         );
         const result = await response.json();
         const terms = result[0]?.terms || [];
@@ -62,7 +62,7 @@ export default function Create() {
   const addFlashcard = async (question, answer) => {
     try {
       const response = await fetch(
-        `http://localhost:5050/records/vocab/${user.email}/${question}/${answer}/${selectedGroup}`,
+        `${process.env.REACT_APP_API_URL}/records/vocab/${user.email}/${question}/${answer}/${selectedGroup}`,
         {
           method: "PATCH",
           headers: {
@@ -98,7 +98,7 @@ export default function Create() {
 
     try {
       const response = await fetch(
-        `http://localhost:5050/records/vocab/${user.email}/${groupName}`,
+        `${process.env.REACT_APP_API_URL}/records/vocab/${user.email}/${groupName}`,
         {
           method: "PATCH",
           headers: {
@@ -127,7 +127,7 @@ export default function Create() {
 
     try {
       const response = await fetch(
-        `http://localhost:5050/records/${user.email}`,
+        `${process.env.REACT_APP_API_URL}/records/${user.email}`,
         {
           method: "DELETE",
         }
