@@ -49,13 +49,13 @@ You can view our original submission and presentation on Devpost:
 
 ## 👤 Team
 
-* [Your Name 1](https://github.com/EmanuelNader)
+* [Emanuel Nader](https://github.com/EmanuelNader)
 
-* [Your Name 2](https://github.com/JordanJunaidi)
+* [Jordan Junaidi](https://github.com/JordanJunaidi)
 
-* [Your Name 3](https://github.com/jaytan3966)
+* [Jayden Tan](https://github.com/jaytan3966)
 
-* [Your Name 4](https://github.com/amytrinh334)
+* [Amy Trinh](https://github.com/amytrinh334)
 
 ## ⚙️ Getting Started
 
