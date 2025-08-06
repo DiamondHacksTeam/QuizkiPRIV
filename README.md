@@ -71,4 +71,31 @@ You can view our original submission and presentation on Devpost:
 
 ### Installation
 
-1. **Clone the repository:**
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/your-username/quizski.git](https://github.com/your-username/quizski.git)
+    cd quizski
+    ```
+
+2.  **Install dependencies for both client and server:**
+    ```bash
+    # In the root directory, for the server
+    npm install
+
+    # In the client directory
+    cd client
+    npm install
+    ```
+
+3.  **Set up environment variables:**
+    * Create a `.env` file in the root directory and add your MongoDB connection string, Auth0 credentials, and Gemini API key.
+
+4.  **Run the application:**
+    ```bash
+    # Start the server (from the root directory)
+    npm start
+
+    # Start the client (from the client directory)
+    cd client
+    npm start
+    ```
